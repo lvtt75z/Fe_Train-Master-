@@ -6,6 +6,8 @@ import {BrowserRouter,Routes,Route,} from "react-router-dom"
 import User from './Component/User/User'
 import Admin from './Component/Admin/Admin'
 import Home from './Component/Home/Home';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>

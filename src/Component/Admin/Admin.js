@@ -1,4 +1,5 @@
 import SideBar from './SideBar'
+import NavBar from './NavBar';
 
 const Admin = (props) =>{
     return(
@@ -7,7 +8,7 @@ const Admin = (props) =>{
                 <SideBar />
             </div>
             <div className='admin-content'>
-                
+                <NavBar />
             </div>
         </div>
     )

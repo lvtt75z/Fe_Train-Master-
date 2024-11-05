@@ -1,0 +1,49 @@
+// NavBar.scss
+
+$navbar-bg: #f8f9fa; // Background color
+$navbar-link-color: #020910; // Link color
+$navbar-link-hover-color: darken($navbar-link-color, 10%); // Link hover color
+$navbar-dropdown-bg: white; // Dropdown background
+$navbar-dropdown-border: rgba(0, 0, 0, 0.15); // Dropdown border color
+
+.navbar {
+  background-color: $navbar-bg;
+  padding: 1rem;
+
+  .navbar-brand {
+    font-size: 1.5rem;
+    color: $navbar-link-color;
+
+    &:hover {
+      color: $navbar-link-hover-color;
+    }
+  }
+
+  .nav-link {
+    color: $navbar-link-color;
+    margin: 0 1rem;
+
+    &:hover {
+      color: $navbar-link-hover-color;
+    }
+  }
+
+  .dropdown-menu {
+    background-color: $navbar-dropdown-bg;
+    border: 1px solid $navbar-dropdown-border;
+
+    .dropdown-item {
+      color: $navbar-link-color;
+
+      &:hover {
+        background-color: $navbar-link-hover-color;
+        color: white; // Change text color on hover
+      }
+    }
+  }
+}
+
+// Add custom spacing between text items in the sidebar menu
+.nav {
+  margin-bottom: 1rem; // Space between items
+}

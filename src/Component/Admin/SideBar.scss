@@ -1,0 +1,215 @@
+@import url("https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css");
+@import url("https://fonts.googleapis.com/css?family=Titillium+Web:300");
+
+$bg-color: #212121;
+$hover-bg-color: #000000;
+$text-color: #999;
+$font-size: 14px;
+$nav-width-collapsed: 60px;
+$nav-width-expanded: 250px;
+
+.area {
+    float: left;
+    background: #e2e2e2;
+    width: 100%;
+    height: 100%;
+}
+
+.fa-2x {
+    font-size: 2em;
+}
+
+.fa {
+    position: relative;
+    display: table-cell;
+    width: $nav-width-collapsed;
+    height: 36px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 20px;
+}
+
+.main-menu {
+    background: $bg-color;
+    border-right: 1px solid #e5e5e5;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    width: $nav-width-collapsed;
+    overflow: hidden;
+    transition: width .05s linear;
+    transform: translateZ(0) scale(1, 1);
+    z-index: 1000;
+    overflow-y: auto; 
+    
+    &::-webkit-scrollbar {
+        width: 8px; // Độ rộng thanh cuộn
+        background-color: $bg-color; // Màu nền của thanh cuộn
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #555; // Màu của thanh cuộn
+        border-radius: 10px; // Bo góc thanh cuộn
+        transition: background-color 0.3s; // Thêm hiệu ứng chuyển đổi
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+        background-color: #888; // Màu khi hover qua thanh cuộn
+    }
+
+    &::-webkit-scrollbar-track {
+        background-color: transparent; // Màu nền cho track
+    }
+    // &:hover,
+    // &.expanded {
+    //     width: $nav-width-expanded;
+    //     overflow: visible;
+    // }
+
+    ul {
+        margin: 7px 0;
+
+        li {
+            position: relative;
+            display: block;
+            width: $nav-width-expanded;
+
+            a {
+                position: relative;
+                display: table;
+                color: $text-color;
+                font-family: Arial, sans-serif;
+                font-size: $font-size;
+                text-decoration: none;
+                transition: all .1s linear;
+                transform: translateZ(0) scale(1, 1);
+
+                &:hover,
+                &:focus {
+                    color: #fff;
+                    background-color: $hover-bg-color;
+                }
+
+                .nav-icon {
+                    position: relative;
+                    display: table-cell;
+                    width: $nav-width-collapsed;
+                    height: 36px;
+                    text-align: center;
+                    vertical-align: middle;
+                    font-size: 18px;
+                }
+
+                .nav-text {
+                    position: relative;
+                    display: table-cell;
+                    vertical-align: middle;
+                    width: 190px;
+                    font-family: 'Titillium Web', sans-serif;
+                }
+            }
+        }
+    }
+
+    ul.logout {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+    }
+}
+
+.no-touch .scrollable.hover {
+    overflow-y: hidden;
+
+    &:hover {
+        overflow-y: auto;
+        overflow: visible;
+    }
+}
+
+a:hover,
+a:focus {
+    text-decoration: none;
+}
+
+nav {
+    user-select: none;
+
+    ul, li {
+        outline: 0;
+        margin: 0;
+        padding: 0;
+    }
+}
+
+@font-face {
+    font-family: 'Titillium Web';
+    font-style: normal;
+    font-weight: 300;
+    src: local('Titillium WebLight'), local('TitilliumWeb-Light'), url("http://themes.googleusercontent.com/static/fonts/titilliumweb/v2/anMUvcNT0H1YN4FII8wpr24bNCNEoFTpS2BTjF6FB5E.woff") format("woff");
+}
+
+.main-menu ul {
+    margin: 7px 0;
+    li {
+        position: relative;
+        display: block;
+        width: $nav-width-expanded;
+        padding: 10px 0; // Thêm khoảng cách giữa các mục
+
+        a {
+            position: relative;
+            display: table;
+            color: $text-color;
+            font-family: Arial, sans-serif;
+            font-size: $font-size;
+            text-decoration: none;
+            transition: all .1s linear;
+            transform: translateZ(0) scale(1, 1);
+
+            .nav-icon {
+                position: relative;
+                display: table-cell;
+                width: $nav-width-collapsed;
+                height: 36px;
+                text-align: center;
+                vertical-align: middle;
+                font-size: 18px;
+            }
+
+            .nav-text {
+                position: relative;
+                display: table-cell;
+                vertical-align: middle;
+                width: 190px;
+                font-family: 'Titillium Web', sans-serif;
+                padding-left: 10px; // Thêm khoảng cách giữa icon và văn bản
+            }
+        }
+    }
+}
+.top-icon {
+    text-align: center; /* Canh giữa hình ảnh */
+    margin-bottom: 20px; /* Khoảng cách dưới hình ảnh */
+}
+
+.profile-image {
+    width: 100px; /* Chiều rộng hình ảnh */
+    height: 100px; /* Chiều cao hình ảnh */
+    border-radius: 50%; /* Tạo hình tròn */
+    object-fit: cover; /* Đảm bảo hình ảnh không bị méo */
+    margin: 0 auto; /* Canh giữa hình ảnh */
+    display: block; /* Để hình ảnh được canh giữa */
+}
+
+.main-menu.expanded {
+    width: $nav-width-expanded; // Kích thước mở rộng
+}
+hr {
+    border: none; // Xóa border mặc định
+    border-top: 3px solid rgb(252, 248, 248); // Đặt màu và độ dày cho đường kẻ
+    margin: 20px 0; // Khoảng cách phía trên và dưới đường kẻ (tuỳ chỉnh)
+}
+
