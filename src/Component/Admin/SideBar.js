@@ -1,46 +1,40 @@
-import { ProSidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
-import React, { useState } from 'react';
-import img from '../../assets/image/gym.jpg'
-import './SideBar.scss'
- 
-const SideBar = (props) => {
-    const [isOpen, setIsOpen] = useState(false);
+import React from 'react';
+import img from '../../assets/image/user.png';
+import './SideBar.scss';
+import {Link} from 'react-router-dom'
 
-    const toggleSidebar = () => {
-        setIsOpen(!isOpen);
-    };
-
+const SideBar = ({ isOpen, toggleSidebar }) => {
     return (
         <div>
             <div className="area"></div>
-            <nav className={`main-menu ${isOpen ? 'expanded' : ''}`}>
+            <nav className={`main-menu ${isOpen ? 'expanded' : 'collapsed'}`}>
                 <div className="top-icon" onClick={toggleSidebar}>
                     <img src={img} alt="Profile" className="profile-image" />
                 </div>
 
                 <ul>
                     <li>
-                        <a href="#">
-                            <i className="fa fa fa-book fa-2x"></i>
-                            <span className="nav-text">Excercise</span>
+                        <a href="/Admins/Exercise">
+                            <i className="fa fa-book fa-2x"></i>
+                            <span className="nav-text">Exercise</span>                        
                         </a>
                     </li>
                     <li className="has-subnav">
-                        <a href="#">
+                        <a href="/Admins/Food">
                             <i className="fa fa-lemon-o fa-2x"></i>
                             <span className="nav-text">Food</span>
                         </a>
                     </li>
-                    <hr/>
+                    <hr />
                     <li className="has-subnav">
                         <a href="#">
-                            <i className="fa fa fa-cutlery fa-2x"></i>
+                            <i className="fa fa-cutlery fa-2x"></i>
                             <span className="nav-text">MealPlan</span>
                         </a>
                     </li>
                     <li className="has-subnav">
                         <a href="#">
-                            <i className="fa fa fa-tasks fa-2x"></i>
+                            <i className="fa fa-tasks fa-2x"></i>
                             <span className="nav-text">Program</span>
                         </a>
                     </li>
@@ -52,44 +46,44 @@ const SideBar = (props) => {
                     </li>
                     <li>
                         <a href="#">
-                            <i className="fa fa fa-male fa-2x"></i>
+                            <i className="fa fa-male fa-2x"></i>
                             <span className="nav-text">Client Tracking</span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <i className="fa fa fa-credit-card fa-2x"></i>
+                            <i className="fa fa-credit-card fa-2x"></i>
                             <span className="nav-text">Training Package Of Client</span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
                             <i className="fa fa-map-marker fa-2x"></i>
-                            <span className="nav-text">FeedBack</span>
+                            <span className="nav-text">Feedback</span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <i className="fa fa fa-money fa-2x"></i>
+                            <i className="fa fa-money fa-2x"></i>
                             <span className="nav-text">Training Package</span>
                         </a>
                     </li>
-                    <hr/>
+                    <hr />
                     <li>
                         <a href="#">
-                            <i className="fa fa fa-info-circle fa-2x"></i>
+                            <i className="fa fa-info-circle fa-2x"></i>
                             <span className="nav-text">Client Information</span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <i className="fa fa fa-info-circle fa-2x"></i>
-                            <span className="nav-text">Person Trainer Information</span>
+                            <i className="fa fa-info-circle fa-2x"></i>
+                            <span className="nav-text">Personal Trainer Information</span>
                         </a>
                     </li>
                     <li>
                         <a href="#">
-                            <i className="fa fa fa-info-circle fa-2x"></i>
+                            <i className="fa fa-info-circle fa-2x"></i>
                             <span className="nav-text">Fitness Manager Information</span>
                         </a>
                     </li>
@@ -97,6 +91,6 @@ const SideBar = (props) => {
             </nav>
         </div>
     );
-}
+};
 
 export default SideBar;

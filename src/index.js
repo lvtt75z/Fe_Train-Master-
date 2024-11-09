@@ -7,6 +7,9 @@ import User from './Component/User/User'
 import Admin from './Component/Admin/Admin'
 import Home from './Component/Home/Home';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import DashBoard from './Component/Admin/Content/DashBoard';
+import Food from './Component/Admin/Content/Food/ManagerFood';
+import Exercise from './Component/Admin/Content/Exercise/ManagerExercise'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -17,13 +20,13 @@ root.render(
           <Route index element={<Home />} />  
           <Route path="Users" element={<User />} />  
         </Route>  
-          <Route path="Admins" element={<Admin/>} />
+        <Route path="/Admins" element={<Admin/>} >
+          <Route index element={<DashBoard />} />
+          <Route path="Food" element={<Food />} />
+          <Route path="Exercise" element={<Exercise/>} />
+        </Route>
       </Routes>
     </BrowserRouter> 
   // </React.StrictMode>
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
