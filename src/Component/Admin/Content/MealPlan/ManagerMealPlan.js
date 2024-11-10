@@ -1,10 +1,10 @@
 import { useState } from "react";
-import './ManagerFood.scss'
-import TableFood from "./TableFood";
-import CreateFood from "./CreateFood";
+import CreateMealPlan from "./CreateMealPlan";
+import TableMealPlan from "./TableMealPlan";
+import './style.scss'
 
-const ManagerFood = () => {
-    const [showModalCreateFood, setShowModelCreateFood] = useState(false);
+const ManagerMealPlan = () => {
+    const [showModalCreateMealPlan, setShowModelCreateMealPlan] = useState(false);
     const [refreshTable, setRefreshTable] = useState(false);
 
     const handleDataAdded = () => {
@@ -14,20 +14,20 @@ const ManagerFood = () => {
     return (
         <>
             <div className="title">
-                Manager Food
+                Manager Meal Plan
             </div>
             <br className="large-spacing" />
             <div className="food-content">
                 <div className="btn-food">
-                    <button onClick={() => setShowModelCreateFood(true)}>Add new Food</button>
+                    <button onClick={() => setShowModelCreateMealPlan(true)}>Add new Meal Plan</button>
                 </div>
                 <div className="spacing-large"></div>
                 <div className="table-food-container">
-                    <TableFood refresh={refreshTable} />
+                    <TableMealPlan refresh={refreshTable} />
                 </div>
-                <CreateFood
-                    show={showModalCreateFood}
-                    setShow={setShowModelCreateFood}
+                <CreateMealPlan
+                    show={showModalCreateMealPlan}
+                    setShow={setShowModelCreateMealPlan}
                     onAdd={handleDataAdded}
                 />
             </div>
@@ -35,4 +35,4 @@ const ManagerFood = () => {
     );
 };
 
-export default ManagerFood;
+export default ManagerMealPlan;

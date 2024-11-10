@@ -27,7 +27,7 @@ const SideBar = ({ isOpen, toggleSidebar }) => {
                     </li>
                     <hr />
                     <li className="has-subnav">
-                        <a href="#">
+                        <a href="/Admins/MealPlan">
                             <i className="fa fa-cutlery fa-2x"></i>
                             <span className="nav-text">MealPlan</span>
                         </a>

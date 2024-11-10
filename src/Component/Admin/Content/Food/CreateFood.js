@@ -10,34 +10,24 @@ function CreateFood(props) {
     const handleClose = () => setShow(false);
 
     const [foodName, setFoodName] = useState("");
-    const [notes, setNotes] = useState("");
-    const [kcal, setKcal] = useState("");
-    const [protein, setProtein] = useState("");
-    const [carb, setCarb] = useState("");
-    const [fat, setFat] = useState("");
+    const [unit, setUnit] = useState("");
 
     const handleSave = async () => {
-
-        if(!foodName){
-            toast.error('no name');
+        if (!foodName) {
+            toast.error('No name provided');
             return;
         }
 
         const foodData = {
             foodName,
-            notes,
-            kcal: parseFloat(kcal),
-            protein: parseFloat(protein),
-            carb: parseFloat(carb),
-            fat: parseFloat(fat)
+            unit
         };
 
         try {
-            await axios.post('http://localhost:8080/food', foodData); 
-            console.log(Response);
-            toast.success('Food item added successfully!')
+            await axios.post('http://localhost:8080/food', foodData);
+            toast.success('Food item added successfully!');
             handleClose();
-            // onAdd(); 
+            onAdd(); // Trigger refresh in the parent component
         } catch (error) {
             console.error('Error adding food item:', error);
             toast.error('Failed to add food item');
@@ -57,24 +47,8 @@ function CreateFood(props) {
                             <input type="text" className="form-control" value={foodName} onChange={(e) => setFoodName(e.target.value)} />
                         </div>
                         <div className="col-md-12">
-                            <label className="form-label">Notes</label>
-                            <input type="text" className="form-control" value={notes} onChange={(e) => setNotes(e.target.value)} />
-                        </div>
-                        <div className="col-12">
-                            <label className="form-label">Kcal</label>
-                            <input type="text" className="form-control" value={kcal} onChange={(e) => setKcal(e.target.value)} />
-                        </div>
-                        <div className="col-12">
-                            <label className="form-label">Protein</label>
-                            <input type="text" className="form-control" value={protein} onChange={(e) => setProtein(e.target.value)} />
-                        </div>
-                        <div className="col-md-12">
-                            <label className="form-label">Carb</label>
-                            <input type="text" className="form-control" value={carb} onChange={(e) => setCarb(e.target.value)} />
-                        </div>
-                        <div className="col-md-12">
-                            <label className="form-label">Fat</label>
-                            <input type="text" className="form-control" value={fat} onChange={(e) => setFat(e.target.value)} />
+                            <label className="form-label">Unit</label>
+                            <input type="text" className="form-control" value={unit} onChange={(e) => setUnit(e.target.value)} />
                         </div>
                     </form>
                 </Modal.Body>

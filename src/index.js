@@ -10,6 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import DashBoard from './Component/Admin/Content/DashBoard';
 import Food from './Component/Admin/Content/Food/ManagerFood';
 import Exercise from './Component/Admin/Content/Exercise/ManagerExercise'
+import MealPlan from './Component/Admin/Content/MealPlan/ManagerMealPlan'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -24,6 +25,7 @@ root.render(
           <Route index element={<DashBoard />} />
           <Route path="Food" element={<Food />} />
           <Route path="Exercise" element={<Exercise/>} />
+          <Route path="MealPlan" element={<MealPlan/>} />
         </Route>
       </Routes>
     </BrowserRouter> 
