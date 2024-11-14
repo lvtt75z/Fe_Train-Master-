@@ -34,7 +34,6 @@ const DeleteProgram = ({ show, setShow, programId, onDelete }) => {
           <Button variant="danger" onClick={handleDelete}>Delete</Button>
         </Modal.Footer>
       </Modal>
-      <ToastContainer />
     </>
   );
 };

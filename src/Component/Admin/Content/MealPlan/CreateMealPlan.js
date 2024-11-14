@@ -109,7 +109,7 @@ const CreateMealPlanModal = ({ show, setShow, onAdd }) => {
               onChange={() => setTrainingStatus(!trainingStatus)}
             />
           </Form.Group>
-
+          <br></br>
           <Form.Group controlId="day">
             <Form.Label>Day:</Form.Label>
             <Form.Control
@@ -201,12 +201,14 @@ const CreateMealPlanModal = ({ show, setShow, onAdd }) => {
                   onChange={(e) => handleFoodChange(index, e)}
                 />
               </Form.Group>
+              <br></br>
               <Button variant="danger" type="button" onClick={() => removeFoodItem(index)}>
                 Remove Food
               </Button>
             </div>
           ))}
 
+          <br></br>
           <Button variant="secondary" type="button" onClick={addFoodItem}>
             Add Food Item
           </Button>
