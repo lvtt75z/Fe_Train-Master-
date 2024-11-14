@@ -13,7 +13,7 @@ function UpdateMealPlan({ show, setShow, mealPlanId, onUpdate }) {
     trainingStatus: false,
     day: '',
     session: '',
-    foodItems: []
+    selectedFoodItems: []  // Ensure it's initialized as an empty array
   });
 
   // Fetch meal plan data when the modal is shown
@@ -26,8 +26,8 @@ function UpdateMealPlan({ show, setShow, mealPlanId, onUpdate }) {
             trainingStatus: response.data.trainingStatus,
             day: response.data.day,
             session: response.data.session,
-            foodItems: response.data.foodItems
-          });
+            selectedFoodItems: response.data.foodItems || []  // Check if 'foodItems' is the correct key
+          });          
         })
         .catch((error) => {
           console.error('Error fetching meal plan data:', error);
@@ -39,10 +39,12 @@ function UpdateMealPlan({ show, setShow, mealPlanId, onUpdate }) {
   // Handle updating the meal plan
   const handleUpdate = async () => {
     const updatedMealPlan = {
+      clientName:mealPlan.clientName,
       trainingStatus: mealPlan.trainingStatus,
       day: mealPlan.day,
       session: mealPlan.session,
-      foodItems: mealPlan.foodItems
+      selectedFoodItems: mealPlan.selectedFoodItems
+      
     };
 
     try {
@@ -58,9 +60,9 @@ function UpdateMealPlan({ show, setShow, mealPlanId, onUpdate }) {
 
   // Handle input change for food items
   const handleFoodChange = (index, field, value) => {
-    const updatedFoodItems = [...mealPlan.foodItems];
+    const updatedFoodItems = [...mealPlan.selectedFoodItems];
     updatedFoodItems[index][field] = value;
-    setMealPlan({ ...mealPlan, foodItems: updatedFoodItems });
+    setMealPlan({ ...mealPlan, selectedFoodItems: updatedFoodItems });
   };
 
   return (
@@ -102,67 +104,71 @@ function UpdateMealPlan({ show, setShow, mealPlanId, onUpdate }) {
           </div>
 
           <h5>Food Items</h5>
-          {mealPlan.foodItems.map((foodItem, index) => (
-            <div key={index} className="food-item">
-              <div>
-                <label className="form-label">Food Name</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={foodItem.foodName}
-                  onChange={(e) => handleFoodChange(index, 'foodName', e.target.value)}
-                />
-              </div>
-              <div>
-                <label className="form-label">Protein</label>
-                <input
-                  type="number"
-                  className="form-control"
-                  value={foodItem.protein}
-                  onChange={(e) => handleFoodChange(index, 'protein', e.target.value)}
-                />
-              </div>
-              <div>
-                <label className="form-label">Fat</label>
-                <input
-                  type="number"
-                  className="form-control"
-                  value={foodItem.fat}
-                  onChange={(e) => handleFoodChange(index, 'fat', e.target.value)}
-                />
-              </div>
-              <div>
-                <label className="form-label">Carb</label>
-                <input
-                  type="number"
-                  className="form-control"
-                  value={foodItem.carb}
-                  onChange={(e) => handleFoodChange(index, 'carb', e.target.value)}
-                />
-              </div>
-              <div>
-                <label className="form-label">Amount</label>
-                <input
-                  type="number"
-                  className="form-control"
-                  value={foodItem.amount}
-                  onChange={(e) => handleFoodChange(index, 'amount', e.target.value)}
-                />
-              </div>
-              <div>
-                <label className="form-label">Note</label>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={foodItem.note}
-                  onChange={(e) => handleFoodChange(index, 'note', e.target.value)}
-                />
-              </div>
+          {mealPlan.selectedFoodItems && mealPlan.selectedFoodItems.length > 0 ? (
+            mealPlan.selectedFoodItems.map((selectedFoodItems, index) => (
+              <div key={index} className="food-item">
+                <div>
+                  <label className="form-label">Food Name</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={selectedFoodItems.foodName}
+                    onChange={(e) => handleFoodChange(index, 'foodName', e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label className="form-label">Protein</label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    value={selectedFoodItems.protein}
+                    onChange={(e) => handleFoodChange(index, 'protein', e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label className="form-label">Fat</label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    value={selectedFoodItems.fat}
+                    onChange={(e) => handleFoodChange(index, 'fat', e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label className="form-label">Carb</label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    value={selectedFoodItems.carb}
+                    onChange={(e) => handleFoodChange(index, 'carb', e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label className="form-label">Amount</label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    value={selectedFoodItems.amount}
+                    onChange={(e) => handleFoodChange(index, 'amount', e.target.value)}
+                  />
+                </div>
+                <div>
+                  <label className="form-label">Note</label>
+                  <input
+                    type="text"
+                    className="form-control"
+                    value={selectedFoodItems.note}
+                    onChange={(e) => handleFoodChange(index, 'note', e.target.value)}
+                  />
+                </div>
 
-              {/* Add horizontal line between food items */}
-              <hr />
-            </div>
-          ))}
+                {/* Add horizontal line between food items */}
+                <hr />
+              </div>
+            ))
+          ) : (
+            <p>No food items available</p>
+          )}
         </form>
       </Modal.Body>
       <Modal.Footer>

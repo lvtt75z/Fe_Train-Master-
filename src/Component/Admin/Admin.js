@@ -3,7 +3,7 @@ import SideBar from './SideBar';
 import NavBar from './NavBar';
 import { Outlet } from "react-router-dom";
 import './Admin.scss';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Admin = () => {

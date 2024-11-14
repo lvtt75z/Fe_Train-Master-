@@ -33,7 +33,7 @@ const SideBar = ({ isOpen, toggleSidebar }) => {
                         </a>
                     </li>
                     <li className="has-subnav">
-                        <a href="#">
+                        <a href="/Admins/Program">
                             <i className="fa fa-tasks fa-2x"></i>
                             <span className="nav-text">Program</span>
                         </a>
