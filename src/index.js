@@ -10,6 +10,7 @@ import Food from './Component/Admin/Content/Food/ManagerFood';
 import Exercise from './Component/Admin/Content/Exercise/ManagerExercise'
 import MealPlan from './Component/Admin/Content/MealPlan/ManagerMealPlan'
 import Program from './Component/Admin/Content/Program/ManagerProgram'
+import FeedbackMealPlan from './Component/Admin/Content/FeedBackMealPlan/ManagerFeedbackMealPlan';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -23,6 +24,7 @@ root.render(
           {/* <Route path="Exercise" element={<Exercise/>} /> */}
           <Route path="MealPlan" element={<MealPlan/>} />
           <Route path="Program" element={<Program/>} />
+          <Route path="FeedBackMealPlan" element={<FeedbackMealPlan/>} />
         </Route>
       </Routes>
     </BrowserRouter> 

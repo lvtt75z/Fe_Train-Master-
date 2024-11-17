@@ -57,7 +57,7 @@ const SideBar = ({ isOpen, toggleSidebar }) => {
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="/Admins/FeedBackMealPlan">
                             <i className="fa fa-map-marker fa-2x"></i>
                             <span className="nav-text">Feedback</span>
                         </a>

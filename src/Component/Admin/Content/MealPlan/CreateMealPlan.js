@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Modal, Button, Form } from 'react-bootstrap';
+import { toast } from 'react-toastify';
 
 const CreateMealPlanModal = ({ show, setShow, onAdd }) => {
   const [clientName, setClientName] = useState('');
@@ -71,11 +72,11 @@ const CreateMealPlanModal = ({ show, setShow, onAdd }) => {
       const response = await axios.post('http://localhost:8080/mealPlans/create', mealPlanData);
       if (response.status === 201) {
         onAdd(); // Refresh table or take action after successful creation
-        alert('Meal Plan created successfully!');
+        toast.success('Meal Plan created successfully!');
         handleClose(); // Close modal after meal plan is created
       }
     } catch (error) {
-      alert('Error creating Meal Plan');
+      toast.error('Error creating Meal Plan');
     }
   };
 
@@ -128,6 +129,7 @@ const CreateMealPlanModal = ({ show, setShow, onAdd }) => {
               onChange={(e) => setSession(e.target.value)}
               required
             >
+              <option>Choose session ... </option>
               <option value="Morning">Morning</option>
               <option value="Afternoon">Afternoon</option>
               <option value="Evening">Evening</option>
