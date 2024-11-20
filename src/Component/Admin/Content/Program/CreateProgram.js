@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 import axios from 'axios';
 import './Program.scss';
+import { toast } from 'react-toastify';
 
 function CreateProgram({ show, setShow, onAdd }) {
   const [clientName, setClientName] = useState('');
@@ -37,11 +38,11 @@ function CreateProgram({ show, setShow, onAdd }) {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     // Convert `day` and `week` to integers
     const formattedDay = parseInt(day, 10);
     const formattedWeek = parseInt(week, 10);
-  
+
     // Format the exercises array to match the desired structure
     const formattedExercises = exercises.map(exercise => ({
       selectedExerciseName: exercise.selectedExerciseName,
@@ -56,19 +57,31 @@ function CreateProgram({ show, setShow, onAdd }) {
       rirRpe: parseInt(exercise.rirRpe, 10),
       load: parseInt(exercise.load, 10)
     }));
-  
+
     const programData = {
       clientName,
       day: formattedDay,
       week: formattedWeek,
       exercises: formattedExercises,
     };
-  
-    console.log(programData); 
-  
+
+    console.log(programData);
+
+    const token = localStorage.getItem('token');
+    if (!token) {
+      toast.error('No token found! Please log in.');
+      return;
+    }
+
+    // Dùng token trong header để phân quyền
+    const config = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    };
     try {
-      const response = await axios.post('http://localhost:8080/programs/create', programData);
-      alert('Program created successfully!');
+      const response = await axios.post('http://localhost:8080/programs/create', programData,config);
+      toast.success('Program created successfully!')
       onAdd();
       handleClose();
     } catch (error) {
@@ -76,26 +89,39 @@ function CreateProgram({ show, setShow, onAdd }) {
       alert("Error creating Program");
     }
   };
-  
+
 
   // Lấy danh sách Clients và Exercises từ API khi modal mở
   useEffect(() => {
     if (show) {
-      axios.get('http://localhost:8080/client/getAllClient')
-        .then(response => {
-          setClients(response.data); // Cập nhật danh sách clients
-        })
-        .catch(error => {
-          console.error("There was an error fetching clients!", error);
-        });
+      const token = localStorage.getItem('token');
+      if (token) {
+        // Dùng token trong header để phân quyền
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        };
 
-      axios.get('http://localhost:8080/exercise/getAllExercise')
-        .then(response => {
-          setAvailableExercises(response.data); // Cập nhật danh sách exercises
-        })
-        .catch(error => {
-          console.error("There was an error fetching exercises!", error);
-        });
+        axios.get('http://localhost:8080/client/getAllClient',config)
+          .then(response => {
+            setClients(response.data); // Cập nhật danh sách clients
+          })
+          .catch(error => {
+            console.error("There was an error fetching clients!", error);
+          });
+
+        axios.get('http://localhost:8080/exercise/getAllExercise',config)
+          .then(response => {
+            setAvailableExercises(response.data); // Cập nhật danh sách exercises
+          })
+          .catch(error => {
+            console.error("There was an error fetching exercises!", error);
+          });
+      } else {
+        toast.error('No token found! Please log in.');
+        setShow(false); // Đóng modal nếu không có token
+      }
     }
   }, [show]); // Chạy lại mỗi khi modal mở
 
@@ -149,7 +175,7 @@ function CreateProgram({ show, setShow, onAdd }) {
                 <Form.Control
                   as="select"
                   name="selectedExerciseName"
-                  value={exercise.selectedExerciseName} 
+                  value={exercise.selectedExerciseName}
                   onChange={(e) => handleExerciseChange(index, e)}
                   required
                 >

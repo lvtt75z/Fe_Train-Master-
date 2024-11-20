@@ -12,10 +12,17 @@ function UpdateFood(props) {
     const [foodName, setFoodName] = useState("");
     const [unit, setUnit] = useState("");
 
+    const token = localStorage.getItem("token");
+    const axiosInstance = axios.create({
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+
     // Fetch food data by ID when modal is shown
     useEffect(() => {
         if (foodId) {
-            axios.get(`http://localhost:8080/food/getFoodById/${foodId}`)
+            axiosInstance.get(`http://localhost:8080/food/getFoodById/${foodId}`)
                 .then((response) => {
                     const food = response.data;
                     setFoodName(food.foodName);
@@ -40,7 +47,7 @@ function UpdateFood(props) {
         };
 
         try {
-            await axios.put(`http://localhost:8080/food/${foodId}`, foodData);
+            await axiosInstance.put(`http://localhost:8080/food/${foodId}`, foodData);
             toast.success('Food item updated successfully!');
             handleClose();
             onUpdate();  // Refresh the table data after updating

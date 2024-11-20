@@ -21,23 +21,39 @@ const CreateMealPlanModal = ({ show, setShow, onAdd }) => {
   // Lấy danh sách Clients và Foods từ API khi modal mở
   useEffect(() => {
     if (show) {
-      axios.get('http://localhost:8080/client/getAllClient')
-        .then(response => {
-          setClients(response.data); // Cập nhật danh sách clients
-        })
-        .catch(error => {
-          console.error("There was an error fetching clients!", error);
-        });
+      // Lấy token từ localStorage
+      const token = localStorage.getItem('token');
+      if (token) {
+        // Dùng token trong header để phân quyền
+        const config = {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          }
+        };
 
-      axios.get('http://localhost:8080/food/getAllFood')
-        .then(response => {
-          setFoods(response.data); // Cập nhật danh sách foods
-        })
-        .catch(error => {
-          console.error("There was an error fetching foods!", error);
-        });
+        // Lấy danh sách Clients
+        axios.get('http://localhost:8080/client/getAllClient', config)
+          .then(response => {
+            setClients(response.data); // Cập nhật danh sách clients
+          })
+          .catch(error => {
+            console.error("There was an error fetching clients!", error);
+          });
+
+        // Lấy danh sách Foods
+        axios.get('http://localhost:8080/food/getAllFood', config)
+          .then(response => {
+            setFoods(response.data); // Cập nhật danh sách foods
+          })
+          .catch(error => {
+            console.error("There was an error fetching foods!", error);
+          });
+      } else {
+        toast.error('No token found! Please log in.');
+        setShow(false); // Đóng modal nếu không có token
+      }
     }
-  }, [show]); // Chạy lại mỗi khi modal mở
+  }, [show]);
 
   const addFoodItem = () => {
     setSelectedFoodItems([
@@ -69,7 +85,21 @@ const CreateMealPlanModal = ({ show, setShow, onAdd }) => {
     };
 
     try {
-      const response = await axios.post('http://localhost:8080/mealPlans/create', mealPlanData);
+      // Lấy token từ localStorage
+      const token = localStorage.getItem('token');
+      if (!token) {
+        toast.error('No token found! Please log in.');
+        return;
+      }
+
+      // Dùng token trong header để phân quyền
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      };
+
+      const response = await axios.post('http://localhost:8080/mealPlans/create', mealPlanData, config);
       if (response.status === 201) {
         onAdd(); // Refresh table or take action after successful creation
         toast.success('Meal Plan created successfully!');

@@ -8,12 +8,20 @@ const DeleteMealPlan = ({ show, setShow, mealPlanId, onDelete }) => {
   const handleClose = () => setShow(false);
 
   const handleDelete = async () => {
+    // Retrieve the token from localStorage
+    const token = localStorage.getItem('token'); // Ensure the token is stored under 'token'
+
     try {
-      // Gửi request xóa meal plan từ backend
-      await axios.delete(`http://localhost:8080/mealPlans/delete/${mealPlanId}`);
+      // Send delete request with the token in the Authorization header
+      await axios.delete(`http://localhost:8080/mealPlans/delete/${mealPlanId}`, {
+        headers: {
+          'Authorization': `Bearer ${token}`  // Add the token here
+        }
+      });
+
       toast.success('Meal plan deleted successfully!');
       handleClose();
-      onDelete();  // Cập nhật lại dữ liệu sau khi xóa thành công
+      onDelete();  // Refresh data after deletion
     } catch (error) {
       console.error('Error deleting meal plan:', error);
       toast.error('Failed to delete meal plan');

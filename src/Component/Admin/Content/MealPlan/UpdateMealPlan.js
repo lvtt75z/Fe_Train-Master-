@@ -3,7 +3,7 @@ import axios from 'axios';
 import { Modal, Button } from 'react-bootstrap';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import './style.scss'
+import './style.scss';
 
 function UpdateMealPlan({ show, setShow, mealPlanId, onUpdate }) {
   const handleClose = () => setShow(false);
@@ -16,10 +16,20 @@ function UpdateMealPlan({ show, setShow, mealPlanId, onUpdate }) {
     selectedFoodItems: []  // Ensure it's initialized as an empty array
   });
 
+  // Get the token from localStorage
+  const token = localStorage.getItem('token');  // Replace 'token' with the key you're using to store the token
+
+  // Set up axios headers with token
+  const axiosInstance = axios.create({
+    headers: {
+      Authorization: `Bearer ${token}`  // Include the token in the Authorization header
+    }
+  });
+
   // Fetch meal plan data when the modal is shown
   useEffect(() => {
     if (mealPlanId) {
-      axios.get(`http://localhost:8080/mealPlans/get/${mealPlanId}`)
+      axiosInstance.get(`http://localhost:8080/mealPlans/get/${mealPlanId}`)
         .then((response) => {
           setMealPlan({
             clientName: response.data.clientName,
@@ -39,16 +49,15 @@ function UpdateMealPlan({ show, setShow, mealPlanId, onUpdate }) {
   // Handle updating the meal plan
   const handleUpdate = async () => {
     const updatedMealPlan = {
-      clientName:mealPlan.clientName,
+      clientName: mealPlan.clientName,
       trainingStatus: mealPlan.trainingStatus,
       day: mealPlan.day,
       session: mealPlan.session,
       selectedFoodItems: mealPlan.selectedFoodItems
-      
     };
 
     try {
-      await axios.put(`http://localhost:8080/mealPlans/update/${mealPlanId}`, updatedMealPlan);
+      await axiosInstance.put(`http://localhost:8080/mealPlans/update/${mealPlanId}`, updatedMealPlan);
       toast.success('Meal plan updated successfully!');
       handleClose();
       onUpdate();  // Refresh the data after updating

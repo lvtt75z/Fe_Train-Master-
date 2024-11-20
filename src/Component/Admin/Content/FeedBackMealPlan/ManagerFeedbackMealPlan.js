@@ -14,9 +14,18 @@ const ManagerFeedBackMealPlan = () => {
     feedback: "",
   });
 
+  const token = localStorage.getItem('token');  // Replace 'token' with the key you're using to store the token
+
+  // Set up axios headers with token
+  const axiosInstance = axios.create({
+    headers: {
+      Authorization: `Bearer ${token}`  // Include the token in the Authorization header
+    }
+  });
+  
   // Fetch meal plans
   useEffect(() => {
-    axios
+    axiosInstance
       .get("http://localhost:8080/mealPlans/api/mealPlans/pending")
       .then((response) => {
         setMealPlans(response.data);
@@ -49,7 +58,7 @@ const ManagerFeedBackMealPlan = () => {
 
 
   const handleApprove = () => {
-    axios
+    axiosInstance
       .put(`http://localhost:8080/api/notifications/approve/${selectedMealPlan}`, approvalData)
       .then(() => {
         toast.success('Meal Plan approved successfully!');
@@ -68,7 +77,7 @@ const ManagerFeedBackMealPlan = () => {
   };
   
   const handleReject = (mealPlanID) => {
-    axios
+    axiosInstance
       .delete(`http://localhost:8080/api/notifications/delete/${mealPlanID}`)
       .then(() => {
         toast.success('Meal Plan rejected successfully!');

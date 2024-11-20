@@ -15,10 +15,19 @@ function UpdateProgram({ show, setShow, programId, onUpdate }) {
         exercises: []
     });
 
+    const token = localStorage.getItem('token');  // Replace 'token' with the key you're using to store the token
+
+    // Set up axios headers with token
+    const axiosInstance = axios.create({
+      headers: {
+        Authorization: `Bearer ${token}`  // Include the token in the Authorization header
+      }
+    });
+
     // Fetch program data when the modal is shown
     useEffect(() => {
         if (programId) {
-            axios.get(`http://localhost:8080/programs/get/${programId}`)
+            axiosInstance.get(`http://localhost:8080/programs/get/${programId}`)
                 .then((response) => {
                     setProgram({
                         clientName: response.data.clientName,
@@ -55,7 +64,7 @@ function UpdateProgram({ show, setShow, programId, onUpdate }) {
         };
 
         try {
-            await axios.put(`http://localhost:8080/programs/update/program/${programId}`, updatedProgram);
+            await axiosInstance.put(`http://localhost:8080/programs/update/program/${programId}`, updatedProgram);
             toast.success('Program updated successfully!');
             handleClose();
             onUpdate();

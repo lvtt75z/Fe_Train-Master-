@@ -4,9 +4,16 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 
 const DeleteFood = ({ foodId, onDelete }) => {
+    const token = localStorage.getItem("token");
+    const axiosInstance = axios.create({
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+
     const handleDelete = async () => {
         try {
-            await axios.delete(`http://localhost:8080/food/${foodId}`);
+            await axiosInstance.delete(`http://localhost:8080/food/${foodId}`);
             toast.success('Food item deleted successfully!');
             onDelete(foodId); // Gọi callback để cập nhật danh sách
         } catch (error) {

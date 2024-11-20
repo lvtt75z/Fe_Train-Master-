@@ -39,6 +39,18 @@ const SideBar = ({ isOpen, toggleSidebar }) => {
                         </a>
                     </li>
                     <li>
+                        <a href="/Admins/FeedBackMealPlan">
+                            <i className="fa fa-map-marker fa-2x"></i>
+                            <span className="nav-text">Feedback MealPlan</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Admins/FeedBackProgram">
+                            <i className="fa fa-map-marker fa-2x"></i>
+                            <span className="nav-text">Feedback Program</span>
+                        </a>
+                    </li>
+                    <li>
                         <a href="#">
                             <i className="fa fa-calendar fa-2x"></i>
                             <span className="nav-text">Calendar</span>
@@ -54,12 +66,6 @@ const SideBar = ({ isOpen, toggleSidebar }) => {
                         <a href="#">
                             <i className="fa fa-credit-card fa-2x"></i>
                             <span className="nav-text">Training Package Of Client</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="/Admins/FeedBackMealPlan">
-                            <i className="fa fa-map-marker fa-2x"></i>
-                            <span className="nav-text">Feedback</span>
                         </a>
                     </li>
                     <li>

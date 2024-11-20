@@ -1,5 +1,4 @@
 import React from "react";
-import { toast } from 'react-toastify';
 
 const MealPlanTable = ({ mealPlans, onOpenModal, onReject }) => {
   const groupedMealPlans = mealPlans.reduce((acc, mealPlan) => {

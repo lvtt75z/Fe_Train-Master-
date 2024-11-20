@@ -13,9 +13,21 @@ const TableProgram = ({ refresh }) => {
 
     const fetchPrograms = async () => {
         try {
-            const response = await axios.get('http://localhost:8080/programs/getAll');
-            setPrograms(response.data);
-        } catch (error) {
+            // Lấy token từ localStorage
+            const token = localStorage.getItem('token');
+            if (!token) {
+              console.error('Token not found');
+              return;
+            }
+            // Gửi yêu cầu GET tới API với header Authorization chứa token
+            const response = await axios.get('http://localhost:8080/programs/getAll', {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            }
+          );
+            setPrograms(response.data); // Cập nhật danh sách meal plans 
+          } catch (error) {
             console.error('Error fetching program data:', error);
         }
     };

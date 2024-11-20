@@ -9,6 +9,7 @@
     "axios": "^1.7.7",
     "bootstrap": "^5.2.0",
     "install": "^0.13.0",
+    "jwt-decode": "^4.0.0",
     "my-app": "file:",
     "npm": "^10.9.0",
     "react": "^18.3.1",

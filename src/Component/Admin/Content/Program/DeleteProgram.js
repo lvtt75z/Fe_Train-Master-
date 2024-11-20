@@ -7,10 +7,24 @@ import 'react-toastify/dist/ReactToastify.css';
 const DeleteProgram = ({ show, setShow, programId, onDelete }) => {
   const handleClose = () => setShow(false);
 
+  const token = localStorage.getItem('token');
+      if (!token) {
+        toast.error('No token found! Please log in.');
+        return;
+      }
+
+      // Dùng token trong header để phân quyền
+      const config = {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      };
+
   const handleDelete = async () => {
+
     try {
       // Send a delete request for the program to the backend
-      await axios.delete(`http://localhost:8080/programs/delete/${programId}`);
+      await axios.delete(`http://localhost:8080/programs/delete/${programId}`,config);
       toast.success('Program deleted successfully!');
       handleClose();
       onDelete();  // Refresh data after a successful deletion

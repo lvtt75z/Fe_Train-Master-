@@ -11,9 +11,16 @@ const TableFood = ({ refresh }) => {
     const [showUpdateModal, setShowUpdateModal] = useState(false);
     const [selectedFoodId, setSelectedFoodId] = useState(null);
 
+    const token = localStorage.getItem("token");
+    const axiosInstance = axios.create({
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
+
     const fetchFoods = async () => {
         try {
-            const response = await axios.get('http://localhost:8080/food/getAllFood');
+            const response = await axiosInstance.get('http://localhost:8080/food/getAllFood');
             setFoods(response.data);
         } catch (error) {
             console.error('Error fetching food data:', error);

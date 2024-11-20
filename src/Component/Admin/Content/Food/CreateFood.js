@@ -12,6 +12,12 @@ function CreateFood(props) {
     const [foodName, setFoodName] = useState("");
     const [unit, setUnit] = useState("");
 
+    const token = localStorage.getItem("token");
+    const axiosInstance = axios.create({
+        headers: {
+            Authorization: `Bearer ${token}`,
+        },
+    });
     const handleSave = async () => {
         if (!foodName) {
             toast.error('No name provided');
@@ -24,7 +30,7 @@ function CreateFood(props) {
         };
 
         try {
-            await axios.post('http://localhost:8080/food', foodData);
+            await axiosInstance.post('http://localhost:8080/food', foodData);
             toast.success('Food item added successfully!');
             handleClose();
             onAdd(); // Trigger refresh in the parent component

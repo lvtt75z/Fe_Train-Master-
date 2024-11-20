@@ -13,10 +13,30 @@ const TableMealPlan = ({ refresh }) => {
 
   const fetchMealPlans = async () => {
     try {
-      const response = await axios.get('http://localhost:8080/mealPlans/getAll');
-      setMealPlans(response.data);
+      // Lấy token từ localStorage
+      const token = localStorage.getItem('token');
+      if (!token) {
+        console.error('Token not found');
+        return;
+      }
+      // Gửi yêu cầu GET tới API với header Authorization chứa token
+      const response = await axios.get('http://localhost:8080/mealPlans/getAll', {
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
+      }
+    );
+      setMealPlans(response.data); // Cập nhật danh sách meal plans 
     } catch (error) {
       console.error('Error fetching meal plan data:', error);
+      if (error.response) {
+        console.error('Response Error:', error.response.data);
+        console.error('Response Status:', error.response.status);
+      } else if (error.request) {
+        console.error('Request Error:', error.request);
+      } else {
+        console.error('General Error:', error.message);
+      }
     }
   };
 
