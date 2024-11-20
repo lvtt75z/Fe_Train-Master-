@@ -13,6 +13,9 @@ import Program from './Component/Admin/Content/Program/ManagerProgram'
 import FeedbackMealPlan from './Component/Admin/Content/FeedBackMealPlan/ManagerFeedbackMealPlan';
 import LoginForm from './Component/Login/LoginForm';
 import FeedbackProgram from './Component/Admin/Content/FeedBackProgram/ManagerFeedBackProgram';
+import PersonalTrainerInfo from './Component/Admin/Content/InfoAdmin/PersonalTrainerInfo';
+import Logout from './Component/Login/Logout';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -30,6 +33,8 @@ root.render(
           <Route path="Program" element={<Program/>} />
           <Route path="FeedBackMealPlan" element={<FeedbackMealPlan/>} />
           <Route path="FeedBackProgram" element={<FeedbackProgram/>} />
+          <Route path="InfoAdmin" element={<PersonalTrainerInfo/>}/>
+          <Route path="logout" element={<Logout/>}/>
         </Route>
       </Routes>
     </BrowserRouter> 

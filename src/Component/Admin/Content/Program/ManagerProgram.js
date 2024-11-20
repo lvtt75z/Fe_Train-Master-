@@ -14,7 +14,7 @@ const ManagerProgram = () => {
     return (
         <>
             <div className="program-title">
-                Manager Program
+
             </div>
             <br className="program-large-spacing" />
             <div className="program-content">

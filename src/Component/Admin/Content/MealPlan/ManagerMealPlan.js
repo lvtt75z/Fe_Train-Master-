@@ -14,7 +14,7 @@ const ManagerMealPlan = () => {
     return (
         <>
             <div className="title">
-                Manager Meal Plan
+
             </div>
             <br className="large-spacing" />
             <div className="food-content">

@@ -2,41 +2,40 @@ import { useEffect, useState } from 'react';
 import axios from 'axios';
 import UpdateMealPlan from './UpdateMealPlan';
 import DeleteMealPlan from './DeleteMealPlan'; // Import DeleteMealPlan component
+import ReactPaginate from 'react-paginate'; // Import ReactPaginate
+import './style.scss';
 
 const TableMealPlan = ({ refresh }) => {
   const [mealPlans, setMealPlans] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
+  const [currentPage, setCurrentPage] = useState(0); // Changed to zero-indexed
+  const itemsPerPage = 4;
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false); // State for delete modal
   const [selectedMealPlanId, setSelectedMealPlanId] = useState(null);
+  const [loading, setLoading] = useState(false); // Loading state
+  const [error, setError] = useState(null); // Error state
 
   const fetchMealPlans = async () => {
+    setLoading(true); // Start loading
     try {
-      // Lấy token từ localStorage
       const token = localStorage.getItem('token');
       if (!token) {
         console.error('Token not found');
+        setError('Token not found');
         return;
       }
-      // Gửi yêu cầu GET tới API với header Authorization chứa token
       const response = await axios.get('http://localhost:8080/mealPlans/getAll', {
         headers: {
-          Authorization: `Bearer ${token}`
-        }
-      }
-    );
+          Authorization: `Bearer ${token}`,
+        },
+      });
       setMealPlans(response.data); // Cập nhật danh sách meal plans 
+      setError(null); // Clear error if request is successful
     } catch (error) {
       console.error('Error fetching meal plan data:', error);
-      if (error.response) {
-        console.error('Response Error:', error.response.data);
-        console.error('Response Status:', error.response.status);
-      } else if (error.request) {
-        console.error('Request Error:', error.request);
-      } else {
-        console.error('General Error:', error.message);
-      }
+      setError('Error fetching meal plans'); // Set error message
+    } finally {
+      setLoading(false); // End loading
     }
   };
 
@@ -48,17 +47,13 @@ const TableMealPlan = ({ refresh }) => {
     fetchMealPlans(); // Làm mới dữ liệu khi có cập nhật
   };
 
-  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfLastItem = (currentPage + 1) * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
   const currentMealPlans = mealPlans.slice(indexOfFirstItem, indexOfLastItem);
   const totalPages = Math.ceil(mealPlans.length / itemsPerPage);
 
-  const goToPreviousPage = () => {
-    if (currentPage > 1) setCurrentPage(currentPage - 1);
-  };
-
-  const goToNextPage = () => {
-    if (currentPage < totalPages) setCurrentPage(currentPage + 1);
+  const handlePageChange = ({ selected }) => {
+    setCurrentPage(selected); // Set current page on pagination change
   };
 
   const handleEditClick = (mealPlanId) => {
@@ -77,7 +72,6 @@ const TableMealPlan = ({ refresh }) => {
 
   return (
     <div className="table-container">
-      {/* UpdateMealPlan Modal */}
       <UpdateMealPlan
         show={showUpdateModal}
         setShow={setShowUpdateModal}
@@ -85,7 +79,6 @@ const TableMealPlan = ({ refresh }) => {
         onUpdate={handleDataUpdated}
       />
 
-      {/* DeleteMealPlan Modal */}
       <DeleteMealPlan
         show={showDeleteModal}
         setShow={setShowDeleteModal}
@@ -93,40 +86,63 @@ const TableMealPlan = ({ refresh }) => {
         onDelete={handleDeleteSuccess}
       />
 
-      <table className="table table-hover table-bordered">
-        <thead>
-          <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Client Name</th>
-            <th scope="col">Training Status</th>
-            <th scope="col">Day</th>
-            <th scope="col">Session</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          {currentMealPlans.map((mealPlan) => (
-            <tr key={mealPlan.mealplan_id}>
-              <th scope="row">{mealPlan.mealplan_id}</th>
-              <td>{mealPlan.clientName}</td>
-              <td>{mealPlan.trainingStatus ? "Active" : "Inactive"}</td>
-              <td>{mealPlan.day}</td>
-              <td>{mealPlan.session}</td>
-              <td>
-                <button type="button" className="btn btn-secondary">View</button>
-                <button onClick={() => handleEditClick(mealPlan.mealplan_id)} className="btn btn-warning mx-3">Update</button>
-                <button onClick={() => handleDeleteClick(mealPlan.mealplan_id)} className="btn btn-danger">Delete</button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {loading && <div className="loading-message">Loading meal plans...</div>}
+      {error && <div className="error-message">{error}</div>}
 
-      <div className="pagination-controls">
-        <button onClick={goToPreviousPage} disabled={currentPage === 1}>Previous</button>
-        <span> Page {currentPage} of {totalPages} </span>
-        <button onClick={goToNextPage} disabled={currentPage === totalPages}>Next</button>
-      </div>
+      {mealPlans.length === 0 && !loading && !error ? (
+        <div className="no-data-message">No meal plans available</div>
+      ) : (
+        <table className="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Client Name</th>
+              <th scope="col">Training Status</th>
+              <th scope="col">Day</th>
+              <th scope="col">Session</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {currentMealPlans.map((mealPlan) => (
+              <tr key={mealPlan.mealplan_id}>
+                <th scope="row">{mealPlan.mealplan_id}</th>
+                <td>{mealPlan.clientName}</td>
+                <td>{mealPlan.trainingStatus ? "Active" : "Inactive"}</td>
+                <td>{mealPlan.day}</td>
+                <td>{mealPlan.session}</td>
+                <td>
+                  <button type="button" className="btn btn-secondary">View</button>
+                  <button onClick={() => handleEditClick(mealPlan.mealplan_id)} className="btn btn-warning mx-3">Update</button>
+                  <button onClick={() => handleDeleteClick(mealPlan.mealplan_id)} className="btn btn-danger">Delete</button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+
+      {/* Pagination */}
+      <ReactPaginate
+        nextLabel="next >"
+        onPageChange={handlePageChange}
+        pageRangeDisplayed={3}
+        marginPagesDisplayed={2}
+        pageCount={totalPages}
+        previousLabel="< previous"
+        pageClassName="page-item"
+        pageLinkClassName="page-link"
+        previousClassName="page-item"
+        previousLinkClassName="page-link"
+        nextClassName="page-item"
+        nextLinkClassName="page-link"
+        breakLabel="..."
+        breakClassName="page-item"
+        breakLinkClassName="page-link"
+        containerClassName="pagination"
+        activeClassName="active"
+        renderOnZeroPageCount={null}
+      />
     </div>
   );
 };
