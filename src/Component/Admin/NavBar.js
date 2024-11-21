@@ -4,7 +4,7 @@ import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 import './NavBar.scss';
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import Logout from '../Login/Logout';
 
 const NavBar = () => {
@@ -38,9 +38,9 @@ const NavBar = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
           </Nav>
-          <Nav.Link href="/Admins/DashBoard">Home</Nav.Link>
+          <Link to="/Admins/DashBoard" className="nav-link">Home</Link>
           <NavDropdown title="Dropdown" id="basic-nav-dropdown">
-            <NavDropdown.Item href="/Admins/InfoAdmin">Profile</NavDropdown.Item>
+          <Link to="/Admins/InfoAdmin" className="dropdown-item">Profile</Link>
             <NavDropdown.Divider />
             <NavDropdown.Item onClick={handleShowModal} className="btn btn-dark">
               Logout

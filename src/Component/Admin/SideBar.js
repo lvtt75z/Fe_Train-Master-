@@ -1,7 +1,7 @@
 import React from 'react';
 import img from '../../assets/image/user.png';
 import './SideBar.scss';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom';
 
 const SideBar = ({ isOpen, toggleSidebar }) => {
     return (
@@ -14,84 +14,84 @@ const SideBar = ({ isOpen, toggleSidebar }) => {
 
                 <ul>
                     <li>
-                        <a href="/Admins/Exercise">
+                        <Link to="/Admins/Exercise">
                             <i className="fa fa-book fa-2x"></i>
                             <span className="nav-text">Exercise</span>                        
-                        </a>
+                        </Link>
                     </li>
                     <li className="has-subnav">
-                        <a href="/Admins/Food">
+                        <Link to="/Admins/Food">
                             <i className="fa fa-lemon-o fa-2x"></i>
                             <span className="nav-text">Food</span>
-                        </a>
+                        </Link>
                     </li>
                     <hr />
                     <li className="has-subnav">
-                        <a href="/Admins/MealPlan">
+                        <Link to="/Admins/MealPlan">
                             <i className="fa fa-cutlery fa-2x"></i>
                             <span className="nav-text">MealPlan</span>
-                        </a>
+                        </Link>
                     </li>
                     <li className="has-subnav">
-                        <a href="/Admins/Program">
+                        <Link to="/Admins/Program">
                             <i className="fa fa-tasks fa-2x"></i>
                             <span className="nav-text">Program</span>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="/Admins/FeedBackMealPlan">
+                        <Link to="/Admins/FeedBackMealPlan">
                             <i className="fa fa-map-marker fa-2x"></i>
                             <span className="nav-text">Feedback MealPlan</span>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="/Admins/FeedBackProgram">
+                        <Link to="/Admins/FeedBackProgram">
                             <i className="fa fa-map-marker fa-2x"></i>
                             <span className="nav-text">Feedback Program</span>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link to="#">
                             <i className="fa fa-calendar fa-2x"></i>
                             <span className="nav-text">Calendar</span>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link to="#">
                             <i className="fa fa-male fa-2x"></i>
                             <span className="nav-text">Client Tracking</span>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link to="#">
                             <i className="fa fa-credit-card fa-2x"></i>
                             <span className="nav-text">Training Package Of Client</span>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link to="#">
                             <i className="fa fa-money fa-2x"></i>
                             <span className="nav-text">Training Package</span>
-                        </a>
+                        </Link>
                     </li>
                     <hr />
                     <li>
-                        <a href="#">
+                        <Link to="#">
                             <i className="fa fa-info-circle fa-2x"></i>
                             <span className="nav-text">Client Information</span>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link to="#">
                             <i className="fa fa-info-circle fa-2x"></i>
                             <span className="nav-text">Personal Trainer Information</span>
-                        </a>
+                        </Link>
                     </li>
                     <li>
-                        <a href="#">
+                        <Link to="#">
                             <i className="fa fa-info-circle fa-2x"></i>
                             <span className="nav-text">Fitness Manager Information</span>
-                        </a>
+                        </Link>
                     </li>
                 </ul>
             </nav>
