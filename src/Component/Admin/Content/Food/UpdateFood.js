@@ -47,7 +47,7 @@ function UpdateFood(props) {
         };
 
         try {
-            await axiosInstance.put(`http://localhost:8080/food/${foodId}`, foodData);
+            await axiosInstance.put(`http://localhost:8080/food/updateFood/${foodId}`, foodData);
             toast.success('Food item updated successfully!');
             handleClose();
             onUpdate();  // Refresh the table data after updating

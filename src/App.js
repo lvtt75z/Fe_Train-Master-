@@ -1,7 +1,4 @@
 import './App.scss';
-import NavBar from './Component/NavBar';
-import Footer from './Component/Footer'
-import Main from './Component/Main';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Admin from './Component/Admin/Admin';
@@ -10,11 +7,7 @@ const App = () => {
   return (
     <div>
       <div className="App">
-        {/* <ToastContainer /> */}
-        <NavBar />
-        <Main />
-        <Footer />
-        {/* <LoginForm/> */}
+        <LoginForm/>
       </div>
 
       <ToastContainer

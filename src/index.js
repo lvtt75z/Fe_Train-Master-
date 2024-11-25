@@ -15,6 +15,8 @@ import LoginForm from './Component/Login/LoginForm';
 import FeedbackProgram from './Component/Admin/Content/FeedBackProgram/ManagerFeedBackProgram';
 import PersonalTrainerInfo from './Component/Admin/Content/InfoAdmin/PersonalTrainerInfo';
 import Logout from './Component/Login/Logout';
+import UserInfo from './Component/Admin/Content/InfoAdmin/UserInfo';
+import Register from './Component/Login/Register';
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -24,17 +26,19 @@ root.render(
       <Routes>
         <Route path="/" element={<App/>}/>
         <Route path="/Login" element={<LoginForm/>}/>
+        <Route path="/Register" element={<Register/>} />
         <Route path="/Admins" element={<Admin/>} >
           <Route index element={<DashBoard />} />
           <Route path='DashBoard' element={<DashBoard />} />
           <Route path="Food" element={<Food />} />
-          {/* <Route path="Exercise" element={<Exercise/>} /> */}
+          <Route path="Exercise" element={<Exercise/>} />
           <Route path="MealPlan" element={<MealPlan/>} />
           <Route path="Program" element={<Program/>} />
           <Route path="FeedBackMealPlan" element={<FeedbackMealPlan/>} />
           <Route path="FeedBackProgram" element={<FeedbackProgram/>} />
           <Route path="InfoAdmin" element={<PersonalTrainerInfo/>}/>
           <Route path="logout" element={<Logout/>}/>
+          <Route path="InfoUser" element={<UserInfo/>}/>
         </Route>
       </Routes>
     </BrowserRouter> 

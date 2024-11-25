@@ -13,28 +13,22 @@ const LoginForm = () => {
   const handleLogin = async (e) => {
     e.preventDefault();
 
-    // Kiểm tra nếu các trường rỗng
     if (!username || !password) {
       toast.error('Vui lòng điền đầy đủ thông tin!');
-      // alert('Vui lòng điền đầy đủ thông tin!');
       return;
     }
 
     try {
-      // Gửi yêu cầu đăng nhập đến backend
       const response = await axios.post('http://localhost:8080/api/auth/login', { username, password });
 
       if (response.data.jwt) {
-        // Lưu token vào localStorage hoặc sessionStorage để sử dụng cho các request sau
         localStorage.setItem('token', response.data.jwt);
 
-        // Giải mã token để lấy role
         const decodedToken = jwtDecode(response.data.jwt);
         const userRole = decodedToken.role; // Lấy role từ payload trong token
 
         console.log(userRole);  // Kiểm tra xem role có đúng không
 
-        // Điều hướng dựa trên role
         if (userRole === 'Owner' || userRole === 'Personal_Trainer' || userRole === 'Fitness_Manager') {
           toast.success('Đăng nhập thành công vào trang admin!');
           navigate('/Admins');  // Điều hướng đến trang admin nếu role là admin, personal_trainer, hoặc fitness_manager
@@ -124,7 +118,7 @@ const LoginForm = () => {
                         style={{ color: "#393f81" }}
                       >
                         Don't have an account?{" "}
-                        <a href="#!" style={{ color: "#393f81" }}>
+                        <a href="/Register" style={{ color: "#393f81" }}>
                           Register here
                         </a>
                       </p>
