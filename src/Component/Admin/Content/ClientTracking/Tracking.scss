@@ -1,0 +1,96 @@
+// Main container styling for food content section
+.tracking-content {
+    padding: 20px;
+    background-color: #f9f9f9; // Light background for contrast
+    border-radius: 8px;
+  
+    // Title styling
+    .title {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 1rem;
+      text-align: center;
+    }
+  
+    // Button styling for "Add new Food" button
+    .btn-tracking {
+      display: flex;
+      justify-content: left;
+      margin-bottom: 100px;
+  
+      button {
+        padding: 10px 20px;
+        font-size: 1rem;
+        color: #fff;
+        background-color: #4caf50; // Green color for "Add" button
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+  
+        &:hover {
+          background-color: #45a049; // Slightly darker on hover
+        }
+      }
+    }
+  
+    // Table container styling for a neat layout
+    .table-tracking-container {
+      max-width: 100%;
+      overflow-x: auto; // Adds horizontal scroll if content overflows
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); // Subtle shadow for depth
+    }
+  }
+  
+  // Spacing utility class to add extra spacing
+  .large-spacing {
+    margin-top: 40px;
+  }
+  
+  .spacing-large {
+    margin-bottom: 40px;
+  }
+  
+  .title{
+    font-size: 40px;
+    color: blue;
+  }
+  
+  .pagination {
+    display: flex; /* Dùng flexbox */
+    justify-content: center; /* Căn giữa nội dung theo chiều ngang */
+    align-items: center; /* Căn giữa nội dung theo chiều dọc (nếu cần) */
+    margin-top: 20px; /* Khoảng cách phía trên */
+    list-style: none; /* Loại bỏ bullet points nếu có */
+    padding: 0; /* Xóa khoảng cách mặc định */
+  }
+  
+  .page-item {
+    margin: 0 5px;
+  }
+  
+  .page-link {
+    text-decoration: none;
+    color: blue; /* Màu chữ */
+    font-weight: bold;
+    padding: 10px 15px;
+    border: 1px solid rgba(0, 0, 0, 0.2); /* Đường viền trong suốt */
+    border-radius: 5px;
+    background-color: transparent; /* Làm nền trong suốt */
+    transition: background-color 0.3s ease, color 0.3s ease; /* Hiệu ứng mượt khi hover */
+  
+    &:hover {
+      background-color: rgba(0, 0, 255, 0.1); /* Màu nền nhẹ khi hover */
+      color: #007bff; /* Đổi màu chữ */
+    }
+  }
+  
+  .active .page-link {
+    background-color: rgba(0, 123, 255, 0.2); /* Nền trong suốt cho trang đang active */
+    color: white; /* Màu chữ */
+    border-color: #007bff; /* Màu viền */
+  }
+  

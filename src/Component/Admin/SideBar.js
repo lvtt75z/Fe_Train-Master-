@@ -60,7 +60,7 @@ const SideBar = ({ isOpen, toggleSidebar }) => {
                     <Link to="#" className="nav-text">Calendar</Link>
                 </MenuItem>
                 <MenuItem icon={<i className="fa fa-male fa-2x"></i>}>
-                    <Link to="#" className="nav-text">Client Tracking</Link>
+                    <Link to="/Admins/ClientTracking" className="nav-text">Client Tracking</Link>
                 </MenuItem>
                 {/* <MenuItem icon={<i className="fa fa-credit-card fa-2x"></i>}>
                     <Link to="#" className="nav-text">Training Package Of Client</Link>

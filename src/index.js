@@ -17,7 +17,7 @@ import PersonalTrainerInfo from './Component/Admin/Content/InfoAdmin/PersonalTra
 import Logout from './Component/Login/Logout';
 import UserInfo from './Component/Admin/Content/InfoAdmin/UserInfo';
 import Register from './Component/Login/Register';
-
+import ClientTracking from './Component/Admin/Content/ClientTracking/ManagerTracking'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -36,6 +36,7 @@ root.render(
           <Route path="Program" element={<Program/>} />
           <Route path="FeedBackMealPlan" element={<FeedbackMealPlan/>} />
           <Route path="FeedBackProgram" element={<FeedbackProgram/>} />
+          <Route path="ClientTracking" element={<ClientTracking/>}/>
           <Route path="InfoAdmin" element={<PersonalTrainerInfo/>}/>
           <Route path="logout" element={<Logout/>}/>
           <Route path="InfoUser" element={<UserInfo/>}/>

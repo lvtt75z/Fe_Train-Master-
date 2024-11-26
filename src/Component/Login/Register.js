@@ -9,8 +9,11 @@ import {
   MDBBtn,
   MDBCheckbox,
 } from "mdb-react-ui-kit";
+import { useNavigate } from "react-router-dom"; 
+import "./Register.scss"
 
 const RegisterForm = () => {
+  const navigate = useNavigate(); // Hook để chuyển hướng
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -41,19 +44,28 @@ const RegisterForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    const usernameRegex = /^[a-zA-Z0-9]{3,15}$/; // Username validation
+    if (!usernameRegex.test(formData.username)) {
+      toast.error(
+        "Username must be 3-15 characters long and contain only letters and numbers."
+      );
+      return;
+    }
+
     if (formData.password !== confirmPassword) {
       toast.error("Passwords do not match!");
       return;
     }
-    console.log(formData);
     try {
       const response = await axios.post(
         "http://localhost:8080/api/auth/register",
         formData
       );
-      console.log("data",response.data);
-      
-      toast.success(response.data || "Registration successful!");
+      console.log(response.data);
+      toast.success("Registration successful!");
+
+      // Chuyển hướng sang trang đăng nhập
+      navigate("/login"); 
     } catch (error) {
       const errorMessage =
         error.response?.data || "An error occurred. Please try again.";
