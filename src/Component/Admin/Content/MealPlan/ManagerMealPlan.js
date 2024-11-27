@@ -37,7 +37,7 @@ const ManagerMealPlan = () => {
                     <TableMealPlan refresh={refreshTable} />
                 </div>
                 <CreateMealPlan
-                    show={showModalCreateMealPlan}
+                    // show={showModalCreateMealPlan}
                     setShow={setShowModelCreateMealPlan}
                     onAdd={handleDataAdded}
                 />
