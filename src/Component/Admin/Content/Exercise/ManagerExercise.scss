@@ -94,3 +94,10 @@
     border-color: #007bff; /* Màu viền */
   }
   
+  .me-3{
+    border-radius: 50%; /* Làm tròn */
+    object-fit: cover; /* Cắt ảnh cho vừa khung */
+    width: 100px; /* Đặt chiều rộng */
+    height: 100px; /* Đặt chiều cao */
+    object-fit: cover;
+  }

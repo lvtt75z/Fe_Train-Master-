@@ -1,6 +1,5 @@
 // Main container styling for food content section
 .food-content {
-  padding: 20px;
   background-color: #f9f9f9; // Light background for contrast
   border-radius: 8px;
 
@@ -17,7 +16,7 @@
   .btn-food {
     display: flex;
     justify-content: left;
-    margin-bottom: 100px;
+    margin-bottom: 10px;
 
     button {
       padding: 10px 20px;
@@ -92,4 +91,12 @@
   background-color: rgba(0, 123, 255, 0.2); /* Nền trong suốt cho trang đang active */
   color: white; /* Màu chữ */
   border-color: #007bff; /* Màu viền */
+}
+
+.me-3{
+  border-radius: 50%; /* Làm tròn */
+  object-fit: cover; /* Cắt ảnh cho vừa khung */
+  width: 100px; /* Đặt chiều rộng */
+  height: 100px; /* Đặt chiều cao */
+  object-fit: cover;
 }

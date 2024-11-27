@@ -3,6 +3,8 @@ import axios from "axios";
 import MealPlanTable from "./MealPlanTable";
 import MealPlanModal from "./MealPlanModal";
 import { toast } from 'react-toastify';
+import img from "../../../../assets/image/gym.jpg"
+import { vietnameseDate } from "../../Util/DateOfTime";
 
 const ManagerFeedBackMealPlan = () => {
   const [mealPlans, setMealPlans] = useState([]);
@@ -22,7 +24,7 @@ const ManagerFeedBackMealPlan = () => {
       Authorization: `Bearer ${token}`  // Include the token in the Authorization header
     }
   });
-  
+
   // Fetch meal plans
   useEffect(() => {
     axiosInstance
@@ -62,12 +64,12 @@ const ManagerFeedBackMealPlan = () => {
       .put(`http://localhost:8080/api/notifications/approve/${selectedMealPlan}`, approvalData)
       .then(() => {
         toast.success('Meal Plan approved successfully!');
-  
+
         // Xóa meal plan vừa được duyệt khỏi danh sách
         setMealPlans((prevMealPlans) =>
           prevMealPlans.filter((mealPlan) => mealPlan[0] !== selectedMealPlan)
         );
-  
+
         closeModal();
       })
       .catch((error) => {
@@ -75,13 +77,13 @@ const ManagerFeedBackMealPlan = () => {
         toast.error('An error occurred while approving the meal plan.');
       });
   };
-  
+
   const handleReject = (mealPlanID) => {
     axiosInstance
       .delete(`http://localhost:8080/api/notifications/delete/${mealPlanID}`)
       .then(() => {
         toast.success('Meal Plan rejected successfully!');
-  
+
         // Cập nhật danh sách mealPlans để xóa Meal Plan vừa bị từ chối
         setMealPlans((prevMealPlans) =>
           prevMealPlans.filter((mealPlan) => mealPlan[0] !== mealPlanID)
@@ -92,7 +94,7 @@ const ManagerFeedBackMealPlan = () => {
         toast.error('An error occurred while rejecting the meal plan.');
       });
   };
-  
+
 
   if (loading) {
     return <div>Loading...</div>;
@@ -100,8 +102,18 @@ const ManagerFeedBackMealPlan = () => {
 
   return (
     <div>
-      <h2>Manager Feedback on Meal Plans</h2>
-      <MealPlanTable mealPlans={mealPlans} onOpenModal={openModal} onReject={handleReject}/>
+      <div className="d-flex justify-content-between align-items-center mb-4 bg-light p-4 rounded shadow">
+        <div className="d-flex align-items-center">
+          <img src={img} className="me-3" />
+          <h1 className="h4 fw-bold text-primary">
+            Manager Feedback MealPlan
+          </h1>
+        </div>
+        <div className="ms-auto">
+          <p className="text-muted fs-4 text-end">{vietnameseDate}</p>
+        </div>
+      </div>
+      <MealPlanTable mealPlans={mealPlans} onOpenModal={openModal} onReject={handleReject} />
       <MealPlanModal
         isOpen={isModalOpen}
         onClose={closeModal}

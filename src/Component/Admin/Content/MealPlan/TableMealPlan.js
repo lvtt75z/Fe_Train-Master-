@@ -29,7 +29,7 @@ const TableMealPlan = ({ refresh }) => {
           Authorization: `Bearer ${token}`,
         },
       });
-      setMealPlans(response.data); // Cập nhật danh sách meal plans 
+      setMealPlans(response.data); // Update meal plans list
       setError(null); // Clear error if request is successful
     } catch (error) {
       console.error('Error fetching meal plan data:', error);
@@ -44,7 +44,7 @@ const TableMealPlan = ({ refresh }) => {
   }, [refresh]);
 
   const handleDataUpdated = () => {
-    fetchMealPlans(); // Làm mới dữ liệu khi có cập nhật
+    fetchMealPlans(); // Refresh data when updated
   };
 
   const indexOfLastItem = (currentPage + 1) * itemsPerPage;
@@ -92,34 +92,41 @@ const TableMealPlan = ({ refresh }) => {
       {mealPlans.length === 0 && !loading && !error ? (
         <div className="no-data-message">No meal plans available</div>
       ) : (
-        <table className="table table-hover table-bordered">
-          <thead>
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Client Name</th>
-              <th scope="col">Training Status</th>
-              <th scope="col">Day</th>
-              <th scope="col">Session</th>
-              <th scope="col">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentMealPlans.map((mealPlan) => (
-              <tr key={mealPlan.mealplan_id}>
-                <th scope="row">{mealPlan.mealplan_id}</th>
-                <td>{mealPlan.clientName}</td>
-                <td>{mealPlan.trainingStatus ? "Active" : "Inactive"}</td>
-                <td>{mealPlan.day}</td>
-                <td>{mealPlan.session}</td>
-                <td>
-                  <button type="button" className="btn btn-secondary">View</button>
-                  <button onClick={() => handleEditClick(mealPlan.mealplan_id)} className="btn btn-warning mx-3">Update</button>
-                  <button onClick={() => handleDeleteClick(mealPlan.mealplan_id)} className="btn btn-danger">Delete</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <div className="card">
+          <div className="card-header">
+            <h5 className="card-title">Meal Plans</h5>
+          </div>
+          <div className="card-body">
+            <table className="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Client Name</th>
+                  <th scope="col">Training Status</th>
+                  <th scope="col">Day</th>
+                  <th scope="col">Session</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {currentMealPlans.map((mealPlan) => (
+                  <tr key={mealPlan.mealplan_id}>
+                    <th scope="row">{mealPlan.mealplan_id}</th>
+                    <td>{mealPlan.clientName}</td>
+                    <td>{mealPlan.trainingStatus ? "Active" : "Inactive"}</td>
+                    <td>{mealPlan.day}</td>
+                    <td>{mealPlan.session}</td>
+                    <td>
+                      <button type="button" className="btn btn-secondary">View</button>
+                      <button onClick={() => handleEditClick(mealPlan.mealplan_id)} className="btn btn-warning mx-3">Update</button>
+                      <button onClick={() => handleDeleteClick(mealPlan.mealplan_id)} className="btn btn-danger">Delete</button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
       )}
 
       {/* Pagination */}
@@ -139,9 +146,8 @@ const TableMealPlan = ({ refresh }) => {
         breakLabel="..."
         breakClassName="page-item"
         breakLinkClassName="page-link"
-        containerClassName="pagination"
+        containerClassName="pagination justify-content-center mt-4"
         activeClassName="active"
-        renderOnZeroPageCount={null}
       />
     </div>
   );

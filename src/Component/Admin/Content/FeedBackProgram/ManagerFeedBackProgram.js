@@ -3,6 +3,8 @@ import axios from "axios";
 import ProgramTable from "./ProgramTable";
 import ProgramModal from "./ProgramModal";
 import { toast } from "react-toastify";
+import { vietnameseDate } from "../../Util/DateOfTime";
+import img from "../../../../assets/image/gym.jpg"
 
 const ManagerFeedBackProgram = () => {
   const [programs, setPrograms] = useState([]);
@@ -93,7 +95,17 @@ const ManagerFeedBackProgram = () => {
 
   return (
     <div>
-      <h2>Manager Feedback on Programs</h2>
+      <div className="d-flex justify-content-between align-items-center mb-4 bg-light p-4 rounded shadow">
+        <div className="d-flex align-items-center">
+          <img src={img} className="me-3" />
+          <h1 className="h4 fw-bold text-primary">
+            Manager Feedback MealPlan
+          </h1>
+        </div>
+        <div className="ms-auto">
+          <p className="text-muted fs-4 text-end">{vietnameseDate}</p>
+        </div>
+      </div>
       <ProgramTable
         programs={programs}
         onOpenModal={openModal}

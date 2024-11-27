@@ -21,10 +21,10 @@ const SideBar = ({ isOpen, toggleSidebar }) => {
                 </div>
             </div>
             <Menu iconShape="circle">
-                <MenuItem icon={<i className="fa fa-book fa-2x"></i>}>
+                <MenuItem icon={<i className="fa fa-book fa-2x"></i>} style={{marginBottom:30}}>
                     <Link to="/Admins/Exercise" className="nav-text">Exercise</Link>
                 </MenuItem>
-                <MenuItem icon={<i className="fa fa-lemon-o fa-2x"></i>}>
+                <MenuItem icon={<i className="fa fa-lemon-o fa-2x"></i>} style={{marginBottom:30}}>
                     <Link to="/Admins/Food" className="nav-text">Food</Link>
                 </MenuItem>
 
@@ -32,11 +32,12 @@ const SideBar = ({ isOpen, toggleSidebar }) => {
                     title="Meal & Program" 
                     icon={<i className="fa fa-cutlery fa-2x"></i>}
                     className="submenu"
+                    style={{marginBottom:30}}
                 >
-                    <MenuItem icon={<i className="fa fa-tasks fa-2x"></i>}>
+                    <MenuItem icon={<i className="fa fa-tasks fa-2x"></i>}style={{marginBottom:2}}>
                         <Link to="/Admins/MealPlan" className="nav-text">Meal Plan</Link>
                     </MenuItem>
-                    <MenuItem icon={<i className="fa fa-tasks fa-2x"></i>}>
+                    <MenuItem icon={<i className="fa fa-tasks fa-2x"></i>}style={{marginBottom:2}}>
                         <Link to="/Admins/Program" className="nav-text">Program</Link>
                     </MenuItem>
                 </SubMenu>
@@ -47,19 +48,20 @@ const SideBar = ({ isOpen, toggleSidebar }) => {
                     open={isFeedBackOpen}
                     onClick={handleFeedBackToggle}
                     className="submenu feedback"
+                    style={{marginBottom:30}}
                 >
-                    <MenuItem icon={<i className="fa fa-map-marker fa-2x"></i>}>
+                    <MenuItem icon={<i className="fa fa-map-marker fa-2x"></i>} style={{marginBottom:2}}>
                         <Link to="/Admins/FeedBackMealPlan" className="nav-text">Feedback Meal Plan</Link>
                     </MenuItem>
-                    <MenuItem icon={<i className="fa fa-map-marker fa-2x"></i>}>
+                    <MenuItem icon={<i className="fa fa-map-marker fa-2x"></i>} style={{marginBottom:2}}>
                         <Link to="/Admins/FeedBackProgram" className="nav-text">Feedback Program</Link>
                     </MenuItem>
                 </SubMenu>
 
-                <MenuItem icon={<i className="fa fa-calendar fa-2x"></i>}>
+                <MenuItem icon={<i className="fa fa-calendar fa-2x"></i>}  style={{marginBottom:30}}>
                     <Link to="#" className="nav-text">Calendar</Link>
                 </MenuItem>
-                <MenuItem icon={<i className="fa fa-male fa-2x"></i>}>
+                <MenuItem icon={<i className="fa fa-male fa-2x"></i>}  style={{marginBottom:30}}>
                     <Link to="/Admins/ClientTracking" className="nav-text">Client Tracking</Link>
                 </MenuItem>
                 {/* <MenuItem icon={<i className="fa fa-credit-card fa-2x"></i>}>

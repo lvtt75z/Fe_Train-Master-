@@ -2,6 +2,8 @@ import { useState } from "react";
 import CreateProgram from "./CreateProgram";  // Adjust import as per your file structure
 import TableProgram from "./TableProgram";
 import './Program.scss';
+import img from "../../../../assets/image/gym.jpg"
+import { vietnameseDate } from "../../Util/DateOfTime";
 
 const ManagerProgram = () => {
     const [showModalCreateProgram, setShowModalCreateProgram] = useState(false);
@@ -13,8 +15,17 @@ const ManagerProgram = () => {
 
     return (
         <>
-            <div className="program-title">
-
+            <div className="d-flex justify-content-between align-items-center mb-4 bg-light p-4 rounded shadow">
+                <div className="d-flex align-items-center">
+                    <img src={img} className="me-3"/>
+                    <h1 className="h4 fw-bold text-primary">
+                        Manager Program
+                    </h1>
+                </div>
+                <div className="ms-auto">
+                    <p className="text-muted fs-4 text-end">{vietnameseDate}</p>
+                </div>
+                <p className="text-muted fs-5"></p>
             </div>
             <br className="program-large-spacing" />
             <div className="program-content">

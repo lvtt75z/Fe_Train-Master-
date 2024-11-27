@@ -92,48 +92,55 @@ const TableProgram = ({ refresh }) => {
       {programs.length === 0 && !loading && !error ? (
         <div className="no-data-message">No programs available</div>
       ) : (
-        <table className="table table-hover table-bordered">
-          <thead>
-            <tr>
-              <th scope="col">ID</th>
-              <th scope="col">Client Name</th>
-              <th scope="col">Day</th>
-              <th scope="col">Week</th>
-              <th scope="col">Exercises</th>
-              <th scope="col">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {currentPrograms.map((program) => (
-              <tr key={program.program_id}>
-                <th scope="row">{program.program_id}</th>
-                <td>{program.clientName}</td>
-                <td>{program.day}</td>
-                <td>{program.week}</td>
-                <td>
-                  <ul>
-                    {program.exercises.map((exercise, index) => {
-                      const exerciseKey = exercise.exercise_id
-                        ? `${program.program_id}-${exercise.exercise_id}-${exercise.exerciseName}`
-                        : `${program.program_id}-${index}-${exercise.exerciseName}`;
+        <div className="card">
+          <div className="card-header">
+            <h5 className="card-title">Programs</h5>
+          </div>
+          <div className="card-body">
+            <table className="table table-striped table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Client Name</th>
+                  <th scope="col">Day</th>
+                  <th scope="col">Week</th>
+                  <th scope="col">Exercises</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {currentPrograms.map((program) => (
+                  <tr key={program.program_id}>
+                    <th scope="row">{program.program_id}</th>
+                    <td>{program.clientName}</td>
+                    <td>{program.day}</td>
+                    <td>{program.week}</td>
+                    <td>
+                      <ul>
+                        {program.exercises.map((exercise, index) => {
+                          const exerciseKey = exercise.exercise_id
+                            ? `${program.program_id}-${exercise.exercise_id}-${exercise.exerciseName}`
+                            : `${program.program_id}-${index}-${exercise.exerciseName}`;
 
-                      return (
-                        <li key={exerciseKey}>
-                          {exercise.exerciseName} - Sets: {exercise.setsStandard}, Reps: {exercise.repsStandard}
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </td>
-                <td>
-                  <button type="button" className="btn btn-secondary">View</button>
-                  <button onClick={() => handleEditClick(program.program_id)} className="btn btn-warning mx-3">Update</button>
-                  <button onClick={() => handleDeleteClick(program.program_id)} className="btn btn-danger">Delete</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                          return (
+                            <li key={exerciseKey}>
+                              {exercise.exerciseName} - Sets: {exercise.setsStandard}, Reps: {exercise.repsStandard}
+                            </li>
+                          );
+                        })}
+                      </ul>
+                    </td>
+                    <td>
+                      <button type="button" className="btn btn-outline-primary">View</button>
+                      <button onClick={() => handleEditClick(program.program_id)} className="btn btn-warning mx-3">Update</button>
+                      <button onClick={() => handleDeleteClick(program.program_id)} className="btn btn-danger">Delete</button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
       )}
 
       {/* Pagination */}
@@ -153,9 +160,8 @@ const TableProgram = ({ refresh }) => {
         breakLabel="..."
         breakClassName="page-item"
         breakLinkClassName="page-link"
-        containerClassName="pagination"
+        containerClassName="pagination justify-content-center mt-4"
         activeClassName="active"
-        renderOnZeroPageCount={null}
       />
     </div>
   );
