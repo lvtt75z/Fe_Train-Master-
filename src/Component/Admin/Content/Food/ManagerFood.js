@@ -4,6 +4,8 @@ import TableFood from "./TableFood";
 import CreateFood from "./CreateFood";
 import img from "../../../../assets/image/gym.jpg"
 import { vietnameseDate } from "../../Util/DateOfTime";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const ManagerFood = () => {
     const [showModalCreateFood, setShowModelCreateFood] = useState(false);
@@ -29,7 +31,12 @@ const ManagerFood = () => {
             <br className="large-spacing" />
             <div className="food-content">
                 <div className="btn-food">
-                    <button onClick={() => setShowModelCreateFood(true)}>Add new Food</button>
+                <button
+                        onClick={() => setShowModelCreateFood(true)}
+                        className="btn btn-primary"
+                    >
+                        <FontAwesomeIcon icon={faPlus} /> Add Meal Plan
+                    </button>
                 </div>
                 <div className="spacing-large"></div>
                 <div className="table-food-container">

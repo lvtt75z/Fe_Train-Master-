@@ -4,6 +4,8 @@ import TableTracking from "./TableTracking";
 import CreateTracking from "./CreateTracking";
 import { vietnameseDate } from "../../Util/DateOfTime";
 import img from "../../../../assets/image/gym.jpg"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const ManagerTracking = () => {
     const [showModalCreateTracking, setShowModalCreateTracking] = useState(false);
@@ -29,7 +31,12 @@ const ManagerTracking = () => {
             <br className="large-spacing" />
             <div className="tracking-content">
                 <div className="btn-tracking">
-                    <button onClick={() => setShowModalCreateTracking(true)}>Add New Tracking</button>
+                    <button
+                        onClick={() => setShowModalCreateTracking(true)}
+                        className="btn btn-primary"
+                    >
+                        <FontAwesomeIcon icon={faPlus} /> Add Meal Plan
+                    </button>
                 </div>
                 <div className="spacing-large"></div>
                 <div className="table-tracking-container">

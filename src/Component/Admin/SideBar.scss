@@ -13,7 +13,8 @@
     color: #fff; 
     transition: all 0.3s ease; 
     overflow-y: hidden; /* Ẩn thanh cuộn dọc */
-
+    scrollbar-width: thin;
+    scrollbar-color: #000000 rgba(255, 255, 255, 0.1);
     /* Xóa lớp phủ background trước */
     &::before {
         display: none; /* Không hiển thị lớp phủ nữa */

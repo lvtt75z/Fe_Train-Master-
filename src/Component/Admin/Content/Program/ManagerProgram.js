@@ -4,6 +4,8 @@ import TableProgram from "./TableProgram";
 import './Program.scss';
 import img from "../../../../assets/image/gym.jpg"
 import { vietnameseDate } from "../../Util/DateOfTime";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const ManagerProgram = () => {
     const [showModalCreateProgram, setShowModalCreateProgram] = useState(false);
@@ -17,7 +19,7 @@ const ManagerProgram = () => {
         <>
             <div className="d-flex justify-content-between align-items-center mb-4 bg-light p-4 rounded shadow">
                 <div className="d-flex align-items-center">
-                    <img src={img} className="me-3"/>
+                    <img src={img} className="me-3" />
                     <h1 className="h4 fw-bold text-primary">
                         Manager Program
                     </h1>
@@ -30,7 +32,12 @@ const ManagerProgram = () => {
             <br className="program-large-spacing" />
             <div className="program-content">
                 <div className="btn-program">
-                    <button onClick={() => setShowModalCreateProgram(true)}>Add new Program</button>
+                    <button
+                        onClick={() => setShowModalCreateProgram(true)}
+                        className="btn btn-primary"
+                    >
+                        <FontAwesomeIcon icon={faPlus} /> Add Meal Plan
+                    </button>
                 </div>
                 <div className="program-spacing-large"></div>
                 <div className="table-program-container">

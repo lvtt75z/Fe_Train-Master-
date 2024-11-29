@@ -4,6 +4,8 @@ import UpdateProgram from './UpdateProgram';
 import DeleteProgram from './DeleteProgram';
 import ReactPaginate from 'react-paginate'; // Import ReactPaginate
 import './Program.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const TableProgram = ({ refresh }) => {
   const [programs, setPrograms] = useState([]);
@@ -131,9 +133,21 @@ const TableProgram = ({ refresh }) => {
                       </ul>
                     </td>
                     <td>
-                      <button type="button" className="btn btn-outline-primary">View</button>
-                      <button onClick={() => handleEditClick(program.program_id)} className="btn btn-warning mx-3">Update</button>
-                      <button onClick={() => handleDeleteClick(program.program_id)} className="btn btn-danger">Delete</button>
+                      <button type="button" className="btn btn-outline-primary">
+                        <FontAwesomeIcon icon={faEye} />
+                      </button>
+                      <button
+                        onClick={() => handleEditClick(program.program_id)}
+                        className="btn btn-warning mx-3"
+                      >
+                        <FontAwesomeIcon icon={faEdit} />
+                      </button>
+                      <button
+                        onClick={() => handleDeleteClick(program.program_id)}
+                        className="btn btn-danger"
+                      >
+                        <FontAwesomeIcon icon={faTrash} />
+                      </button>
                     </td>
                   </tr>
                 ))}

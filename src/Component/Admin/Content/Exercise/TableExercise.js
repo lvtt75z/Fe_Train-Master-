@@ -4,6 +4,8 @@ import UpdateExercise from './UpdateExercise';
 import DeleteExercise from './DeleteExercise';
 import ReactPaginate from 'react-paginate';
 import './ManagerExercise.scss'; // Đảm bảo có styles riêng
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
 const TableExercise = ({ refresh }) => {
   const [exercises, setExercises] = useState([]);
@@ -78,23 +80,22 @@ const TableExercise = ({ refresh }) => {
                 <td>{exercise.exerciseId}</td>
                 <td>{exercise.exercisename}</td>
                 <td>
-                  <button
-                    type="button"
-                    className="btn btn-secondary"
-                  >
-                    View
+                  <button type="button" className="btn btn-secondary">
+                    <FontAwesomeIcon icon={faEye} />
                   </button>
                   <button
                     onClick={() => handleEditClick(exercise.exercise_id)}
                     type="button"
                     className="btn btn-warning mx-3"
                   >
-                    Update
+                    <FontAwesomeIcon icon={faEdit} />
                   </button>
                   <DeleteExercise
                     exerciseId={exercise.exercise_id}
                     onDelete={handleDataDeleted}
-                  />
+                  >
+                    <FontAwesomeIcon icon={faTrashAlt} />
+                  </DeleteExercise>
                 </td>
               </tr>
             ))}

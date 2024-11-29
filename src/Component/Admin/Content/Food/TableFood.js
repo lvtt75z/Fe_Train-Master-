@@ -4,6 +4,9 @@ import UpdateFood from './UpdateFood';
 import DeleteFood from './DeleteFood';
 import ReactPaginate from 'react-paginate'; // Import ReactPaginate
 import './ManagerFood.scss'; // Ensure styles for ReactPaginate are consistent
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
+import '@fortawesome/fontawesome-svg-core/styles.css';
 
 const TableFood = ({ refresh }) => {
   const [foods, setFoods] = useState([]);
@@ -80,9 +83,22 @@ const TableFood = ({ refresh }) => {
                 <td>{food.foodName}</td>
                 <td>{food.unit}</td>
                 <td>
-                  <button type="button" className="btn btn-secondary">View</button>
-                  <button onClick={() => handleEditClick(food.foodId)} type="button" className="btn btn-warning mx-3">Update</button>
-                  <DeleteFood foodId={food.foodId} onDelete={handleDataDeleted} />
+                  <button type="button" className="btn btn-secondary">
+                    <FontAwesomeIcon icon={faEye} />
+                  </button>
+                  <button
+                    onClick={() => handleEditClick(food.foodId)}
+                    type="button"
+                    className="btn btn-warning mx-3"
+                  >
+                    <FontAwesomeIcon icon={faEdit} />
+                  </button>
+                  <DeleteFood foodId={food.foodId} onDelete={handleDataDeleted}>
+                    <button type="button" className="btn btn-danger">
+                      <FontAwesomeIcon icon={faTrashAlt} />
+                    </button>
+                  </DeleteFood>
+
                 </td>
               </tr>
             ))}

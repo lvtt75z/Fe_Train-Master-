@@ -4,6 +4,8 @@ import UpdateMealPlan from './UpdateMealPlan';
 import DeleteMealPlan from './DeleteMealPlan'; // Import DeleteMealPlan component
 import ReactPaginate from 'react-paginate'; // Import ReactPaginate
 import './style.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye, faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
 
 const TableMealPlan = ({ refresh }) => {
   const [mealPlans, setMealPlans] = useState([]);
@@ -117,9 +119,21 @@ const TableMealPlan = ({ refresh }) => {
                     <td>{mealPlan.day}</td>
                     <td>{mealPlan.session}</td>
                     <td>
-                      <button type="button" className="btn btn-secondary">View</button>
-                      <button onClick={() => handleEditClick(mealPlan.mealplan_id)} className="btn btn-warning mx-3">Update</button>
-                      <button onClick={() => handleDeleteClick(mealPlan.mealplan_id)} className="btn btn-danger">Delete</button>
+                      <button type="button" className="btn btn-secondary">
+                        <FontAwesomeIcon icon={faEye} />
+                      </button>
+                      <button
+                        onClick={() => handleEditClick(mealPlan.mealplan_id)}
+                        className="btn btn-warning mx-3"
+                      >
+                        <FontAwesomeIcon icon={faEdit} />
+                      </button>
+                      <button
+                        onClick={() => handleDeleteClick(mealPlan.mealplan_id)}
+                        className="btn btn-danger"
+                      >
+                        <FontAwesomeIcon icon={faTrash} />
+                      </button>
                     </td>
                   </tr>
                 ))}

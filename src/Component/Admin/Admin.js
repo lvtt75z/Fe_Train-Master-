@@ -19,9 +19,6 @@ const Admin = () => {
                 <SideBar toggleSidebar={handleSidebarToggle} isOpen={isSidebarOpen} />
             </div>
             <div className='admin-content'>
-                <div className='admin-navbar'>
-                    <NavBar />
-                </div>
                 <div className='admin-main'>
                     <Outlet />
                 </div>

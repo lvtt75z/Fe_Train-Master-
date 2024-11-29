@@ -4,6 +4,8 @@ import UpdateTracking from './UpdateTracking';
 import DeleteTracking from './DeleteTracking';
 import ReactPaginate from 'react-paginate';
 import './Tracking.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEdit, faTrashAlt } from '@fortawesome/free-solid-svg-icons'
 
 const TableTracking = ({ refresh }) => {
   const [trackingData, setTrackingData] = useState([]);
@@ -121,9 +123,11 @@ const TableTracking = ({ refresh }) => {
                     onClick={() => handleEditClick(tracking.trackingId)}
                     className="btn btn-warning mx-3"
                   >
-                    Update
+                    <FontAwesomeIcon icon={faEdit} />
                   </button>
-                  <DeleteTracking trackingId={tracking.trackingId} />
+                  <DeleteTracking trackingId={tracking.trackingId}>
+                    <FontAwesomeIcon icon={faTrashAlt} />
+                  </DeleteTracking>
                 </td>
               </tr>
             ))}

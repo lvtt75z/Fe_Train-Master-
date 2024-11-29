@@ -4,6 +4,8 @@ import TableExercise from "./TableExercise";
 import CreateExercise from "./CreateExercise";
 import img from "../../../../assets/image/gym.jpg"
 import { vietnameseDate } from "../../Util/DateOfTime";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus } from '@fortawesome/free-solid-svg-icons';
 
 const ManagerExercise = () => {
     const [showModalCreateExercise, setShowModalCreateExercise] = useState(false);
@@ -29,7 +31,12 @@ const ManagerExercise = () => {
             <br className="large-spacing" />
             <div className="exercise-content">
                 <div className="btn-exercise">
-                    <button onClick={() => setShowModalCreateExercise(true)}>Add new Exercise</button>
+                <button
+                        onClick={() => setShowModalCreateExercise(true)}
+                        className="btn btn-primary"
+                    >
+                        <FontAwesomeIcon icon={faPlus} /> Add Meal Plan
+                    </button>
                 </div>
                 <div className="spacing-large"></div>
                 <div className="table-exercise-container">
