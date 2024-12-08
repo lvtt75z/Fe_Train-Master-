@@ -12,10 +12,10 @@ const TableMealPlan = ({ refresh }) => {
   const [currentPage, setCurrentPage] = useState(0); // Changed to zero-indexed
   const itemsPerPage = 4;
   const [showUpdateModal, setShowUpdateModal] = useState(false);
-  const [showDeleteModal, setShowDeleteModal] = useState(false); // State for delete modal
+  const [showDeleteModal, setShowDeleteModal] = useState(false); 
   const [selectedMealPlanId, setSelectedMealPlanId] = useState(null);
-  const [loading, setLoading] = useState(false); // Loading state
-  const [error, setError] = useState(null); // Error state
+  const [loading, setLoading] = useState(false); 
+  const [error, setError] = useState(null); 
 
   const fetchMealPlans = async () => {
     setLoading(true); // Start loading

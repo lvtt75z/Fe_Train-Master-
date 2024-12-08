@@ -153,6 +153,14 @@ function UpdateMealPlan({ show, setShow, mealPlanId, onUpdate }) {
                   />
                 </div>
                 <div>
+                  <label className="form-label">Kcals</label>
+                  <input
+                    type="number"
+                    className="form-control"
+                    value={selectedFoodItems.kcals}
+                  />
+                </div>
+                <div>
                   <label className="form-label">Amount</label>
                   <input
                     type="number"

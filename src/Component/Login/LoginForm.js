@@ -62,13 +62,13 @@ const LoginForm = () => {
                   <div className="card-body p-4 p-lg-5 text-black">
                     <form onSubmit={handleLogin}>
                       <div className="d-flex align-items-center mb-3 pb-1">
-                        <i className="fas fa-cubes fa-2x me-3" style={{ color: "#ff6219" }}></i>
-                        <span className="h1 fw-bold mb-0">Logo</span>
+                        {/* <i className="fas fa-cubes fa-2x me-3" style={{ color: "#ff6219" }}></i> */}
+                        <span className="h1 fw-bold mb-0 mx-auto">Login</span>
                       </div>
 
-                      <h5 className="fw-normal mb-3 pb-3" style={{ letterSpacing: "1px" }}>
+                      {/* <h5 className="fw-normal mb-3 pb-3" style={{ letterSpacing: "1px" }}> 
                         Sign into your account
-                      </h5>
+                      </h5> */}
 
                       <div className="form-outline mb-4">
                         <input
@@ -110,7 +110,7 @@ const LoginForm = () => {
                         </button>
                       </div>
 
-                      <a className="small text-muted" href="#!">
+                      <a className="small text-muted" href="/Forgot-password">
                         Forgot password?
                       </a>
                       <p
@@ -118,7 +118,7 @@ const LoginForm = () => {
                         style={{ color: "#393f81" }}
                       >
                         Don't have an account?{" "}
-                        <a href="/Register" style={{ color: "#393f81" }}>
+                        <a href="/Register_Client" style={{ color: "#393f81" }}>
                           Register here
                         </a>
                       </p>
