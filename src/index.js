@@ -17,8 +17,10 @@ import PersonalTrainerInfo from './Component/Admin/Content/InfoAdmin/PersonalTra
 import Logout from './Component/Login/Logout';
 import UserInfo from './Component/Admin/Content/InfoAdmin/UserInfo';
 import Register from './Component/Login/Register';
-import ClientTracking from './Component/Admin/Content/ClientTracking/ManagerTracking'
-
+import ClientTracking from './Component/Admin/Content/ClientTracking/ManagerTracking';
+import MealPlanComponent from './Component/Client/Mealplan/MealPlanComponent';
+import ProgramComponent from './Component/Client/Program/ProgramComponent';
+import TrackingComponent from './Component/Client/ClientTracking/Tracking';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   // <React.StrictMode>
@@ -27,6 +29,7 @@ root.render(
         <Route path="/" element={<App/>}/>
         <Route path="/Login" element={<LoginForm/>}/>
         <Route path="/Register" element={<Register/>} />
+        <Route path="/Clients" element={<TrackingComponent/>} />
         <Route path="/Admins" element={<Admin/>} >
           <Route index element={<DashBoard />} />
           <Route path='DashBoard' element={<DashBoard />} />

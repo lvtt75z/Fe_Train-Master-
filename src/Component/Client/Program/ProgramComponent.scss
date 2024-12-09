@@ -1,0 +1,156 @@
+// ProgramComponent.scss
+
+$primary-color: #4CAF50;
+$secondary-color: #FF5722;
+$background-color: #f4f4f4;
+$text-color: #333;
+$card-bg-color: white;
+$card-border-color: #ddd;
+$card-shadow-color: rgba(0, 0, 0, 0.1);
+$loading-color: #777;
+
+// Font size variables
+$font-size-base: 16px;
+$font-size-large: 18px;
+$font-size-small: 14px;
+
+// Mixin for flexbox centering
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Meal plan container
+.program-container {
+  @include flex-center;
+  flex-direction: column;
+  padding: 20px;
+  background-color: $background-color;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px $card-shadow-color;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  gap: 20px;
+
+  @media (max-width: 768px) {
+    padding: 15px;
+  }
+}
+
+// Loading and error messages
+.loading,
+.error {
+  font-size: $font-size-large;
+  color: $loading-color;
+  text-align: center;
+  margin-top: 20px;
+}
+
+// Program Card Styles
+.program-card {
+  background-color: $card-bg-color;
+  border: 1px solid $card-border-color;
+  box-shadow: 0 2px 5px $card-shadow-color;
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 20px;
+
+  &.program-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: $font-size-large;
+    color: $primary-color;
+
+    h4 {
+      font-weight: bold;
+    }
+
+    .program-total-volume {
+      font-size: $font-size-base;
+      color: $secondary-color;
+    }
+  }
+
+  .program-details {
+    font-size: $font-size-base;
+    color: $text-color;
+
+    .exercise-table {
+      margin-top: 15px;
+      width: 100%;
+      border-collapse: collapse;
+
+      th, td {
+        padding: 12px;
+        text-align: left;
+        border: 1px solid $card-border-color;
+      }
+
+      th {
+        background-color: $primary-color;
+        color: white;
+      }
+
+      td {
+        background-color: $card-bg-color;
+        color: $text-color;
+
+        &:nth-child(even) {
+          background-color: #f9f9f9;
+        }
+      }
+    }
+  }
+}
+
+// Table styling for the program exercises
+.table-programs {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
+
+  th, td {
+    padding: 10px;
+    border: 1px solid $card-border-color;
+    text-align: center;
+  }
+
+  th {
+    background-color: $primary-color;
+    color: white;
+    font-size: $font-size-large;
+  }
+
+  td {
+    font-size: $font-size-base;
+    color: $text-color;
+
+    &:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+  }
+
+  .total-row {
+    font-weight: bold;
+    background-color: #f0f0f0;
+    color: $secondary-color;
+  }
+}
+
+// Responsive Styles for Small Devices
+@media (max-width: 768px) {
+  .table-programs {
+    font-size: $font-size-small;
+    th, td {
+      padding: 8px;
+    }
+  }
+
+  .program-container {
+    padding: 10px;
+  }
+}

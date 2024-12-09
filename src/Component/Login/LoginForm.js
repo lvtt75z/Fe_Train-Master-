@@ -33,10 +33,10 @@ const LoginForm = () => {
           toast.success('Đăng nhập thành công vào trang admin!');
           navigate('/Admins');  // Điều hướng đến trang admin nếu role là admin, personal_trainer, hoặc fitness_manager
         }
-        // else if(userRole = "Client"){
-        //   toast.success('Đăng nhập thành công!!!');
-        //   navigate('User');
-        // }
+        else if(userRole === "Client"){
+          toast.success('Đăng nhập thành công!!!');
+          navigate('/Clients');
+        }
       }
     } catch (error) {
       toast.error('Đăng nhập thất bại, vui lòng kiểm tra lại tài khoản và mật khẩu!');
